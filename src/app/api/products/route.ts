@@ -4,9 +4,9 @@ import {v2 as cloudinary} from 'cloudinary'
 import prisma from "@/lib/prisma";
 
 cloudinary.config({
-    cloud_name: 'dggr7hsaj',
-    api_key: '469623312327882',
-    api_secret: 'K_P-36WHVX0wpq2092VH-__rDck'
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 export const GET =async(req:NextRequest)=>{
