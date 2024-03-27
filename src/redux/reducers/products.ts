@@ -1,35 +1,69 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { ProductProp } from '@/type'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
+export const addProduct = createAsyncThunk('products/addProduct',async(data)=>{
+  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+    method:'post',
+    body:JSON.stringify(data)
+  })
+  const result = await response.json()
+  return result
+})
+export const getProduct = createAsyncThunk('products/getProduct',async()=>{
+  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+    method:'get',
+  })
+  const result = await response.json()
+  return result
+})
 
 export interface ProductsState {
-  value: number
+  products: ProductProp[],
+  cart: object[],
+  isLoading:boolean,
+  error:string | object
 }
 
 const initialState: ProductsState = {
-  value: 0,
+  products: [],
+  cart:[],
+  isLoading:false,
+  error:''
 }
 
 export const productsSlice = createSlice({
-  name: 'counter',
+  name: 'products',
   initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
-    },
+
   },
+  extraReducers:builder=>{
+    builder.addCase(addProduct.pending,(state)=>{
+      state.isLoading=true
+    })
+    builder.addCase(addProduct.fulfilled,(state,action:{payload:ProductProp})=>{
+      state.isLoading=false
+      const products = state.products 
+      state.products=[...products,action.payload]
+    })
+    builder.addCase(addProduct.rejected,(state)=>{
+      state.isLoading=false
+      state.error='Server Error'
+    })
+    builder.addCase(getProduct.pending,(state)=>{
+      state.isLoading=true
+    })
+    builder.addCase(getProduct.fulfilled,(state,action:{payload:ProductProp[]})=>{
+      state.isLoading=false
+      state.products=action.payload
+    })
+    builder.addCase(getProduct.rejected,(state)=>{
+      state.isLoading=false
+      state.error='Server Error'
+    })
+  }
 })
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = productsSlice.actions
+export const {  } = productsSlice.actions
 
 export default productsSlice.reducer
