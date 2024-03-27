@@ -9,8 +9,13 @@ cloudinary.config({
 });
 
 export const GET =async(req:NextRequest)=>{
-    const products = await prisma.products.findMany()
-    return res.json(products,{status:202})
+    try {
+        const products = await prisma.products.findMany()
+        return res.json(products,{status:202})
+    } catch (error) {
+        console.log(error)
+        return res.json(error,{status:405})
+    }
 }
 export const POST =async (req:NextRequest)=>{
     try {
