@@ -95,7 +95,7 @@ function ProductsContainer() {
                     <MagnifyingGlassIcon className='w-5 h-5 text-gray-500'/>
                 </div>
             </div>
-            <div className={`w-full h-full flex flex-wrap gap-2 lg:gap-4 ${!products.length&&'justify-center items-center'}`}>
+            <div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
                 {
                     products.length?products.map(val=> <Product key={val.id} id={val.id} name={val.name} price={val.price} stock={val.stock} image={val.image} />):<EmptyComponent/>
                 }
