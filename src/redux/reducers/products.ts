@@ -2,7 +2,7 @@ import { ProductProp } from '@/type'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const addProduct = createAsyncThunk('products/addProduct',async(data)=>{
-  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+  const response = await fetch('https://admin-intai-mall.vercel.app/api/products',{
     method:'post',
     body:JSON.stringify(data)
   })
@@ -10,7 +10,7 @@ export const addProduct = createAsyncThunk('products/addProduct',async(data)=>{
   return result
 })
 export const getProduct = createAsyncThunk('products/getProduct',async()=>{
-  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+  const response = await fetch('https://admin-intai-mall.vercel.app/api/products',{
     method:'get',
   })
   const result = await response.json()
