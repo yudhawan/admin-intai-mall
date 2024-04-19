@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-const allowOrigin = process.env.NODE_ENV === 'production' ? [process.env.BASE_URL, 'https://admin-intai-mall.vercel.app/', 'http://localhost:3000'] : ['http://localhost:3000']
+const allowOrigin = process.env.NODE_ENV === 'production' ? [process.env.BASE_URL, 'https://admin-intai-mall.vercel.app', 'http://localhost:3000'] : ['http://localhost:3000','https://admin-intai-mall.vercel.app']
 export function middleware(request: Request) {
     const res = NextResponse.next()
+    console.log(allowOrigin)
     const origin = request.headers.get('origin') || ''
     if (origin && !allowOrigin.includes(origin)) return new NextResponse(null, {
         status: 400,
@@ -17,7 +18,6 @@ export function middleware(request: Request) {
     //     'Access-Control-Allow-Headers',
     //     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     // )
-
     return res
 }
 
