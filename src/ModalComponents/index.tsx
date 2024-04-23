@@ -1,4 +1,4 @@
-import Loader from "@/components/Loader"
+import Loader from "@/components/Loader/Loader"
 import { ModalAppProp } from "@/type"
 
 const ModalAppList:ModalAppProp[] = [

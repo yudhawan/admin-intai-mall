@@ -1,7 +1,7 @@
 import { usePathname } from 'next/navigation'
-import { urlMenu } from '../lib/urlServices'
+import { urlMenu } from '../../lib/urlServices'
 import Link from 'next/link'
-import Button from './Button'
+import Button from '../Button/Button'
 import {ArrowRightStartOnRectangleIcon} from '@heroicons/react/24/outline'
 
 function Sidebar() {

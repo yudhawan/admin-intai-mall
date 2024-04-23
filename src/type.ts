@@ -23,4 +23,5 @@ export type ProductProp={
     desc?: string
     category? :object
     caregoryId? : string
+    deleteFn?:()=>void
 }

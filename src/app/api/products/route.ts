@@ -33,3 +33,20 @@ export const POST =async (req:NextRequest)=>{
         return res.json(error,{status:405})
     }
 }
+export const DELETE = async (req:NextRequest)=>{
+    try {
+        const data = await req.json()
+        const imgId = data?.img.split('/')
+        const imgDirId=imgId[imgId.length-2]
+        const imgPubId = imgId[imgId.length-1].split('.')[0]
+        const product = await prisma.products.delete({where:{
+            id:data.id
+        }})
+        cloudinary.uploader.destroy(`${imgDirId}/${imgPubId}`,{resource_type:'image'}).then(a=>console.log(a))
+        console.log(product)
+        return res.json(product,{status:202})
+    } catch (error) {
+        console.log(error)
+        return res.json(error,{status:405})
+    }
+}

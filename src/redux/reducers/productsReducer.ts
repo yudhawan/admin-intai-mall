@@ -16,6 +16,15 @@ export const getProduct = createAsyncThunk('products/getProduct',async()=>{
   const result = await response.json()
   return result
 })
+export const deleteProduct = createAsyncThunk('products/deleteProduct',async(data:{id:string,img:string|undefined})=>{
+  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+    method:'delete',
+    body:JSON.stringify(data)
+  })
+  console.log(response)
+  const result = await response.json()
+  return result
+})
 
 export interface ProductsState {
   products: ProductProp[],
@@ -43,7 +52,7 @@ export const productsSlice = createSlice({
     })
     builder.addCase(addProduct.fulfilled,(state,action:{payload:ProductProp})=>{
       state.isLoading=false
-      const products = state.products 
+      const products = state.products.length?state.products:[]
       state.products=[...products,action.payload]
     })
     builder.addCase(addProduct.rejected,(state)=>{
@@ -58,6 +67,18 @@ export const productsSlice = createSlice({
       state.products=action.payload
     })
     builder.addCase(getProduct.rejected,(state)=>{
+      state.isLoading=false
+      state.error='Server Error'
+    })
+    builder.addCase(deleteProduct.pending,(state)=>{
+      state.isLoading=true
+    })
+    builder.addCase(deleteProduct.fulfilled,(state,action)=>{
+      state.isLoading=false
+      const products = state.products?.filter(val=>val.id!==action.payload?.id)
+      state.products=  products
+    })
+    builder.addCase(deleteProduct.rejected,(state)=>{
       state.isLoading=false
       state.error='Server Error'
     })
