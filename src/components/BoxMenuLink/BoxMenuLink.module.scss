@@ -1,0 +1,17 @@
+.main{
+    display: flex;
+    svg{
+        width: 7rem;
+        path{
+            stroke: #6B7280;
+        }
+    }
+}
+.main:hover{
+    svg{
+        width: 7rem;
+        path{
+            stroke: #EF4444;
+        }
+    }
+}

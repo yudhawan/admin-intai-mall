@@ -1,3 +1,5 @@
+import { BuildingStorefrontIcon, RectangleStackIcon, Square2StackIcon, Squares2X2Icon, TagIcon } from "@heroicons/react/24/outline"
+
 export const urlMenu = [
     {
         name:'dashboard',
@@ -8,11 +10,29 @@ export const urlMenu = [
         url:'/products'
     },
     {
-        name:'categories',
-        url:'/categories'
+        name:'discounts',
+        url:'/discounts'
     },
     {
-        name:'transaction',
-        url:'/transaction'
+        name:'Orders',
+        url:'/orders'
+    },
+]
+
+export const BoxMenuUrl=[
+    {
+        icon:RectangleStackIcon,
+        name:'products',
+        link:'/products'
+    },
+    {
+        icon:BuildingStorefrontIcon,
+        name:'orders',
+        link:'/orders'
+    },
+    {
+        icon:TagIcon,
+        name:'discounts',
+        link:'/discounts'
     },
 ]

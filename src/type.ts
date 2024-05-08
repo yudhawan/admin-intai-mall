@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import React, { ReactNode, RefAttributes } from "react"
 
 export type ModalContextProp={
     modalId:string
@@ -24,4 +24,11 @@ export type ProductProp={
     category? :object
     caregoryId? : string
     deleteFn?:()=>void
+}
+
+export type BoxMenuLinkProp={
+    name:string
+    badges?:number
+    icon:ReactNode
+    link:string
 }

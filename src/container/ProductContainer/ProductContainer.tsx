@@ -1,8 +1,8 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
-import InputComponent from '../components/InputComponent/InputComponent'
-import { handleValidationForm, numberFormatMoney } from '../lib/services'
-import Button from '../components/Button/Button'
+import InputComponent from '../../components/InputComponent/InputComponent'
+import { handleValidationForm, numberFormatMoney } from '../../lib/services'
+import Button from '../../components/Button/Button'
 import { addProduct, deleteProduct, getProduct } from '@/redux/reducers/productsReducer'
 import { useRedux } from '@/redux/useRedux'
 import { ModalContext } from '@/constant/ModalContext'
@@ -10,7 +10,8 @@ import { ModalContextProp } from '@/type'
 import {ChevronUpIcon, MagnifyingGlassIcon, PlusIcon} from '@heroicons/react/24/outline'
 import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import Product from '@/components/Product/Product'
-
+import style from './ProductContainer.module.scss'
+import Image from 'next/image'
 type dataInput={
     name:string,
     price:string | number,
@@ -26,9 +27,11 @@ function ProductsContainer() {
         stock:'',
     })
     const [showAdd,setShowAdd]=useState<boolean>(false)
+    const [type,setType]=useState<string>('products')
     const [image,setImage]=useState<any>()
     const [preview,setPreview]=useState<string | undefined>('')
     const [validation,setValidation] = useState<string[]>([])
+    const [category,setCategory] = useState<string>('')
     function handleInput(value:string|FileList,key:string) {
         if(value) setValidation(validation.filter(val=>val!==key))
         if(!value) setValidation(prev=>([...prev,value]))
@@ -44,11 +47,14 @@ function ProductsContainer() {
             dispatch(addProduct({...data,image:reader.result}))
         }
     }
+    function handelAddCategory() {
+        console.log(category)
+    }
     function handleDelete({id,img}:{id:string,img:string|undefined}) {
         dispatch(deleteProduct({id,img}))
     }
     useEffect(()=>{
-        handleIsLoading(isLoading)
+        if(products.length) handleIsLoading(isLoading)
     },[isLoading])
     useEffect(()=>{
         setImage('')
@@ -59,7 +65,7 @@ function ProductsContainer() {
         dispatch(getProduct())
     },[])
   return (
-    <div className='w-full flex flex-col gap-4 md:gap-10 p-4'>
+    <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4`}>
         
         <div className='flex flex-col items-start justify-start gap-4'>
             <h3 className='font-bold text-3xl'>All Products</h3>
@@ -68,6 +74,10 @@ function ProductsContainer() {
                     <PlusIcon className='group-hover:text-white w-5 h-5 stroke-2' />
                     Add Product
                 </Button>
+                <form action={handelAddCategory} className='flex items-center gap-2 border border-gray-500 rounded-md px-4 pr-1'>
+                    <InputComponent onChange={e=> setCategory(e.target.value)} type='text' placeholder='Add Category' classname='border-none rounded-none p-0 w-full' value={category} />
+                    <Button onClick={handelAddCategory} classname='!p-none hover:!bg-transparent border-none'> <PlusIcon className='w-5 h-5 text-gray-500'/></Button>
+                </form>
                 <div className='flex items-center gap-2 border border-gray-500 rounded-md px-4'>
                     <InputComponent onChange={e=>{}} type='text' placeholder='search' classname='border-none rounded-none p-0 w-full' />
                     <MagnifyingGlassIcon className='w-5 h-5 text-gray-500'/>
@@ -93,17 +103,27 @@ function ProductsContainer() {
                     <Button onClick={handleSubmit}>submit</Button>
                 </form>
                 <div className='w-72 h-auto p-2 flex flex-col border border-gray-400 rounded-lg'>
-                    <img src={preview?preview:'https://placehold.co/280x280?text=Image'} className='w-full h-52 object-contain' />
+                    <Image src={preview?preview:'https://placehold.co/280x280?text=Image'} className='w-full h-52 object-contain' alt='img' width={280} height={280} />
                     {data.price&&<h2 className='capitalize font-bold'>{numberFormatMoney(+data.price)}</h2>}
                     {data.name&&<h2 className='capitalize font-semibold line-clamp-1'>{data.name}</h2>}
                     {data.stock&&<span className='capitalize text-sm mt-2'>stock : {data.stock}</span>}
                 </div>
             </div>}
-            <div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
+            <div className='w-full flex gap-2 flex-wrap'>
+                <Button onClick={()=>setType('products')} classname={`${type=='products'&& 'bg-gray-500 hover:text-white'}`}>All Products</Button>
+                <Button onClick={()=>setType('categories')} classname={`${type=='categories'&& 'bg-gray-500 text-white'}`}>All Categories</Button>
+            </div>
+            {type==='products'&&<div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
                 {
                     products.length?products.map(val=> <Product key={val.id} id={val.id} name={val.name} price={val.price} stock={val.stock} image={val.image} deleteFn={()=>handleDelete({id:val.id,img:val.image})} />):<EmptyComponent/>
                 }
-            </div>
+            </div>}
+            {type==='categories'&&<div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
+                <EmptyComponent/>
+                {/* {
+                    products.length?products.map(val=> <Product key={val.id} id={val.id} name={val.name} price={val.price} stock={val.stock} image={val.image} deleteFn={()=>handleDelete({id:val.id,img:val.image})} />):<EmptyComponent/>
+                } */}
+            </div>}
         </div>
     </div>
   )

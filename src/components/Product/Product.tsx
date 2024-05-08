@@ -4,11 +4,11 @@ import { numberFormatMoney } from '@/lib/services'
 import { ProductProp } from '@/type'
 import Button from '../Button/Button'
 import {TrashIcon} from '@heroicons/react/24/outline'
-
+import style from './Product.module.scss'
 
 function Product({id,name,price,stock,caregoryId,category,desc,image,deleteFn}:ProductProp) {
   return (
-    <div className='w-72 h-auto p-2 flex flex-col border border-gray-300 rounded-lg relative'>
+    <div className={`${style.main} w-72 h-auto p-2 flex flex-col border border-gray-300 rounded-lg relative`}>
         <Image src={image?image:'https://placehold.co/280x280?text=Image'} width={250} height={250} alt='image' className='w-full h-52 object-contain' />
         <h2 className='capitalize font-bold'>{numberFormatMoney(+price)}</h2>
         <h2 className='capitalize font-semibold line-clamp-1'>{name}</h2>

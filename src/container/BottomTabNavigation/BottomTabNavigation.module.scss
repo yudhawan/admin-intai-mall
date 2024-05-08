@@ -1,0 +1,38 @@
+.main{
+    width: 100%;
+}
+.link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: capitalize;
+    svg{
+        width: fit-content;
+        path{
+            stroke: #1b1b1b;
+        }
+    }
+    span{
+        color: #1b1b1b;
+    }
+}
+.link:hover{
+    svg{
+        path{
+            stroke: #EF4444;
+        }
+    }
+    span{
+        color: #EF4444;
+    }
+}
+.active{
+    svg{
+        path{
+            stroke: #EF4444;
+        }
+    }
+    span{
+        color: #EF4444;
+    }
+}

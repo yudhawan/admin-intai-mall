@@ -1,4 +1,4 @@
-import ProductsContainer from '@/container/ProductContainer'
+import ProductsContainer from '@/container/ProductContainer/ProductContainer'
 import React from 'react'
 
 

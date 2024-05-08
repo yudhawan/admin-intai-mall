@@ -19,3 +19,22 @@ export const handleValidationForm = (obj:object):string[]=>{
     checkProp(obj)
     return emptyKeys
 }
+type ImgReaderProp = {
+    images: File[] | undefined
+}
+export const ImageReader = (val:ImgReaderProp)=>{
+    const tmp:any=[]
+    let reader = new FileReader()
+    if(Array.isArray(val.images)){
+        val.images?.forEach(val=>{
+            reader.readAsDataURL(val)
+            reader.onload=async()=>{
+                const result:string | ArrayBuffer | null = reader.result
+                tmp.push(result)
+            }
+        })
+        
+    }
+    console.log(typeof tmp)
+    return tmp
+}

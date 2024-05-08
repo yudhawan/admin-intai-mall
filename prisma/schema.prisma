@@ -29,3 +29,8 @@ model Category{
   name String
   products Products[]
 }
+
+model Banners{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  type String
+}
