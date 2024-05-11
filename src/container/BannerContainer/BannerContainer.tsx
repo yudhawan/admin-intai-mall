@@ -6,28 +6,43 @@ import {ChevronLeftIcon,ChevronRightIcon, PhotoIcon} from '@heroicons/react/24/o
 import style from './BannerContainer.module.scss'
 import { useRedux } from '@/redux/useRedux'
 import { addBanners } from '@/redux/reducers/bannersReducer'
-import { ImageReader } from '@/lib/services'
 function BannerContainer() {
     const {dispatch}=useRedux()
     const [isLoadingSync, startTransition] = useTransition()
-    const [images,setImages] = useState<string[]>()
+    const [images,setImages] = useState()
     const [preview,setPreview] = useState<string[]>([])
     const [index,setIndex] = useState<number>(0)
     const imgref = useRef<any>()
     function handleImage() {
         let prev = []
-        let reader = new FileReader()
-        const files = imgref?.current?.files
+        const files = Array.from(imgref?.current?.files)
         if(!files) return
-        for (let i = 0; i < files.length; i++) {
-            prev.push(URL.createObjectURL(files[i]))
-            reader.readAsDataURL(files[i])
-            reader.onload = async()=>{
-                // setImages(reader.result)
-            }
-        }
-        setPreview(prev)
-        const arrFiles:File[] = Array.from(files) 
+        Promise.all(
+            files?.map((val:any)=>{
+                return new Promise((resolve,reject)=>{
+                    let reader = new FileReader()
+                    reader.onload=(e)=>{
+                        resolve({src:e.target?.result,alt:val.name})
+                    }
+                    reader.onerror=(e)=>{
+                        reject(e)
+                    }
+                    reader.readAsDataURL(val.src)
+                })
+            })
+        ).then((img:any)=>{
+            setImages(img)
+            // setPreview(img)
+        }).catch(e=>console.log("Error Cok : ",e))
+        // for (let i = 0; i < files.length; i++) {
+        //     prev.push(URL.createObjectURL(files[i]))
+        //     reader.readAsDataURL(files[i])
+        //     reader.onload = async()=>{
+        //         // setImages(reader.result)
+        //     }
+        // }
+        // setPreview(prev)
+        // const arrFiles:File[] = Array.from(files) 
     }
     function navigateImage(id:string) {
         if(id==='left') return index==0?setIndex(preview.length-1):setIndex(prev=>prev-=1)
@@ -37,6 +52,7 @@ function BannerContainer() {
         // console.log(Object.values(images)[0])
         if(images) dispatch(addBanners({images:preview}))
     }
+    console.log(images)
     const imgShow = preview.length? preview[index]:'https://placehold.co/1400x400?text=Image'
   return (
     <div className={`${style.main} w-full h-auto group relative flex-col gap-2`}>
