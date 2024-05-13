@@ -15,7 +15,7 @@ type inputProp={
 function InputComponent({classname,type='text',accept,disabled,onChange,value,placeholder,ref,id}:inputProp) {
   return (
     <div className={`${classname} p-2 border border-gray-300 w-56 rounded-md`}>
-        <input ref={ref} className='focus:outline-none w-full h-full border-none placeholder:capitalize' type={type} value={value} onChange={onChange} accept={accept} disabled={disabled} placeholder={placeholder} id={id} />
+        <input ref={ref} className='focus:outline-none w-full h-full border-none placeholder:capitalize bg-transparent' type={type} value={value} onChange={onChange} accept={accept} disabled={disabled} placeholder={placeholder} id={id} />
     </div>
   )
 }

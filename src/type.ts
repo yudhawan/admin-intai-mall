@@ -32,3 +32,14 @@ export type BoxMenuLinkProp={
     icon:ReactNode
     link:string
 }
+
+export type ImagesBanner = {
+    src:string
+    alt:string
+}
+
+export type ProductDataInput={
+    name:string,
+    price:string | number,
+    stock:string | number,
+}

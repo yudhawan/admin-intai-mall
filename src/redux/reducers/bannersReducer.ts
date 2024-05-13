@@ -1,3 +1,4 @@
+import { ImagesBanner } from "@/type";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 type BannersState = {
@@ -5,7 +6,7 @@ type BannersState = {
     isLoading:boolean
     error:string
 }
-export const addBanners = createAsyncThunk('banners/addBanners',async({images}:{images:string[]})=>{
+export const addBanners = createAsyncThunk('banners/addBanners',async({images}:{images:ImagesBanner[]})=>{
     const addBanners = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/banners',{
         method:'POST',
         body:JSON.stringify(images)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BoxMenuUrl } from '@/lib/urlServices'
+import { BoxMenuUrl } from '@/services/urlServices'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Button from '@/components/Button/Button'
@@ -7,7 +7,6 @@ import { CogIcon,HomeIcon } from '@heroicons/react/24/outline'
 import style from './BottomTabNavigation.module.scss'
 function BottomTabNavigation() {
     const pathname = usePathname()
-    console.log(pathname)
   return (
     <div className={`${style.main} flex justify-evenly fixed bottom-0 left-0 h-16 py-2 drop-shadow-lg bg-white md:hidden`}>
         <Link href={'/'} className={`${style.link} ${pathname==='/'?style.active:''} border-none !p-0 hover:!bg-transparent justify-between`}>

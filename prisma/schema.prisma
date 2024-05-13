@@ -13,24 +13,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Products{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  price String
-  stock String
-  image String?
-  desc String?
-  category Category? @relation(fields: [caregoryId], references: [id])
-  caregoryId String? @db.ObjectId
+model Products {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  price       String
+  stock       String
+  image       String?
+  desc        String?
+  category    Category? @relation(fields: [caregoryId], references: [id])
+  caregoryId  String?   @db.ObjectId
+  create_data DateTime  @default(now())
 }
 
-model Category{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  products Products[]
+model Category {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  products    Products[]
+  create_data DateTime   @default(now())
 }
 
-model Banners{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  type String
+model Banners {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  type        String
+  create_data DateTime @default(now())
 }

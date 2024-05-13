@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
-import { numberFormatMoney } from '@/lib/services'
 import { ProductProp } from '@/type'
 import Button from '../Button/Button'
 import {TrashIcon} from '@heroicons/react/24/outline'
 import style from './Product.module.scss'
+import { numberFormatMoney } from '@/services/services'
 
 function Product({id,name,price,stock,caregoryId,category,desc,image,deleteFn}:ProductProp) {
   return (

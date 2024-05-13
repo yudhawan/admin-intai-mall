@@ -2,7 +2,7 @@ import React from 'react'
 import BannerContainer from '../BannerContainer/BannerContainer'
 import style from './DashboardContainer.module.scss'
 import BoxMenuLink from '@/components/BoxMenuLink/BoxMenuLink'
-import { BoxMenuUrl } from '@/lib/urlServices'
+import { BoxMenuUrl } from '@/services/urlServices'
 function DashboardContainer() {
   return (
     <div className={`${style.main} p-8 flex-col gap-10`}>

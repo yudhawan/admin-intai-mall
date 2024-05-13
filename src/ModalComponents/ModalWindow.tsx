@@ -13,7 +13,7 @@ function ModalWindow() {
       handleModalId('')
     }
   }
-  if(active&&modal.id) return (
+  if(active || modal?.id) return (
     <div className='fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-transparent backdrop-blur-[2px]' onClick={handlePropagation}>
       {modal.component}
     </div>

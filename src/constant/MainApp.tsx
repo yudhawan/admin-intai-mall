@@ -6,13 +6,13 @@ import { Provider } from 'react-redux'
 import ModalProvider from './ModalProvider'
 import ModalWindow from '@/ModalComponents/ModalWindow'
 import BottomTabNavigation from '@/container/BottomTabNavigation/BottomTabNavigation'
-
+import style from './MainApp.module.scss'
 function MainApp({children}:{children:ReactNode}) {
   return (
-   <div className='w-full h-screen'>
+   <div className={style.main+' bg-gray-100'}>
         <Provider store={store}>
             <Sidebar/>
-            <div className='md:ml-64 relative h-[calc(100vh - 64px)] w-[calc(100% - 256px)] md:h-full'>
+            <div className={style.container+' md:ml-64 relative w-[calc(100% - 256px)] md:h-full '}>
               <ModalProvider>
                 {children}
                 <ModalWindow/>
