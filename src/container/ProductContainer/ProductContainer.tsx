@@ -12,7 +12,7 @@ import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import Product from '@/components/Product/Product'
 import style from './ProductContainer.module.scss'
 
-function ProductsContainer({allProducts}:{allProducts:any}) {
+function ProductContainer({allProducts}:{allProducts:any}) {
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
     const {dispatch,selector}= useRedux()
     const {isLoading,products} = selector(state=>state.products)
