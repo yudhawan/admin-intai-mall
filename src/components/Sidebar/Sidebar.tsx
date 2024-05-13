@@ -1,5 +1,5 @@
 import { usePathname } from 'next/navigation'
-import { urlMenu } from '../../lib/urlServices'
+import { urlMenu } from '../../services/urlServices'
 import Link from 'next/link'
 import Button from '../Button/Button'
 import {CogIcon} from '@heroicons/react/24/outline'

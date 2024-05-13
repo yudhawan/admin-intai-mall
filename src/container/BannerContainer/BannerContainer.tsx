@@ -6,56 +6,53 @@ import {ChevronLeftIcon,ChevronRightIcon, PhotoIcon} from '@heroicons/react/24/o
 import style from './BannerContainer.module.scss'
 import { useRedux } from '@/redux/useRedux'
 import { addBanners } from '@/redux/reducers/bannersReducer'
+import { ImagesBanner } from '@/type'
+
+
+
 function BannerContainer() {
     const {dispatch}=useRedux()
-    const [isLoadingSync, startTransition] = useTransition()
-    const [images,setImages] = useState()
+    const [images,setImages] = useState<ImagesBanner[]>([])
     const [preview,setPreview] = useState<string[]>([])
     const [index,setIndex] = useState<number>(0)
     const imgref = useRef<any>()
     function handleImage() {
-        let prev = []
-        const files = Array.from(imgref?.current?.files)
-        if(!files) return
-        Promise.all(
-            files?.map((val:any)=>{
-                return new Promise((resolve,reject)=>{
-                    let reader = new FileReader()
-                    reader.onload=(e)=>{
-                        resolve({src:e.target?.result,alt:val.name})
-                    }
-                    reader.onerror=(e)=>{
-                        reject(e)
-                    }
-                    reader.readAsDataURL(val.src)
-                })
+        const prev = []
+        const files: FileList | null = imgref?.current?.files
+        if(!files || !files.length) return
+        const promise:Promise<{src:string,alt:string}>[] = Array.from(files).map(file=>{
+            return new Promise((resolve,reject)=>{
+                const reader = new FileReader()
+                reader.onload = (e) => {
+                    if (e.target) resolve({ src: e.target.result as string, alt: file.name })
+                    else reject(new Error("FileReader target not available"))
+                    
+                }
+                reader.onerror = (e) =>  reject(e)
+
+                reader.readAsDataURL(file)
             })
-        ).then((img:any)=>{
-            setImages(img)
-            // setPreview(img)
-        }).catch(e=>console.log("Error Cok : ",e))
-        // for (let i = 0; i < files.length; i++) {
-        //     prev.push(URL.createObjectURL(files[i]))
-        //     reader.readAsDataURL(files[i])
-        //     reader.onload = async()=>{
-        //         // setImages(reader.result)
-        //     }
-        // }
-        // setPreview(prev)
-        // const arrFiles:File[] = Array.from(files) 
+        }) 
+        Promise.all(promise).then(images=>{
+            setImages(images)
+            
+        }).catch(e=> console.log('Error Image Upload : ',e))
+        const images = Array.from(files)
+        for(const image of images){
+            prev.push(URL.createObjectURL(image))
+        }
+        setPreview(prev)
     }
     function navigateImage(id:string) {
         if(id==='left') return index==0?setIndex(preview.length-1):setIndex(prev=>prev-=1)
         return index<(preview.length-1)?setIndex(prev=>prev+=1):setIndex(0)
     }
     function handleSaveImage() {
-        // console.log(Object.values(images)[0])
-        if(images) dispatch(addBanners({images:preview}))
+        if(images) dispatch(addBanners({images:images}))
     }
-    console.log(images)
     const imgShow = preview.length? preview[index]:'https://placehold.co/1400x400?text=Image'
   return (
-    <div className={`${style.main} w-full h-auto group relative flex-col gap-2`}>
+    <div className={`${style.main} w-full h-auto group relative flex-col gap-2 items-center`}>
         <input type="file" accept='image/*' hidden ref={imgref} onChange={handleImage} multiple />
         <Image src={imgShow} width={1024} height={500} className='h-[400px]' alt='banner' priority style={{objectFit:'contain'}} />
         <div className='flex items-center gap-4'>
