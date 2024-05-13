@@ -17,7 +17,7 @@ type dataInput={
     price:string | number,
     stock:string | number,
 }
-function ProductsContainer() {
+function ProductContainer() {
     const {handleIsLoading} = useContext(ModalContext) as ModalContextProp
     const {dispatch,selector}= useRedux()
     const {isLoading,products} = selector(state=>state.products)
@@ -129,4 +129,4 @@ function ProductsContainer() {
   )
 }
 
-export default ProductsContainer
+export default ProductContainer
