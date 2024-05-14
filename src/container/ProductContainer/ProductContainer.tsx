@@ -1,12 +1,11 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
 import InputComponent from '../../components/InputComponent/InputComponent'
-import { handleValidationForm } from '../../services/services'
 import Button from '../../components/Button/Button'
-import { addProduct, deleteProduct, setProducts } from '@/redux/reducers/productsReducer'
+import { deleteProduct, setProducts } from '@/redux/reducers/productsReducer'
 import { useRedux } from '@/redux/useRedux'
 import { ModalContext } from '@/constant/ModalContext'
-import { ModalContextProp, ProductDataInput } from '@/type'
+import { ModalContextProp } from '@/type'
 import { MagnifyingGlassIcon, PlusIcon} from '@heroicons/react/24/outline'
 import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import Product from '@/components/Product/Product'
@@ -31,7 +30,6 @@ function ProductContainer({allProducts}:{allProducts:any}) {
     useEffect(()=>{
         dispatch(setProducts(allProducts))
     },[allProducts])
-    console.log(allProducts)
   return (
     <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4 bg-gray-100`}>
         
@@ -42,16 +40,23 @@ function ProductContainer({allProducts}:{allProducts:any}) {
                     <InputComponent onChange={e=>{}} type='text' placeholder='search' classname='border-none rounded-none p-0 w-full' />
                     <MagnifyingGlassIcon className='w-5 h-5 text-gray-500'/>
                 </div>
-                <form action={handelAddCategory} className='flex items-center gap-2 border border-gray-500 rounded-md px-4 pr-1'>
+                {/* <form action={handelAddCategory} className='flex items-center gap-2 border border-gray-500 rounded-md px-4 pr-1'>
                     <InputComponent onChange={e=> setCategory(e.target.value)} type='text' placeholder='Add Category' classname='border-none rounded-none p-0 w-full' value={category} />
                     <Button onClick={handelAddCategory} classname='!p-none hover:!bg-transparent border-none !bg-transparent'> <PlusIcon className='w-5 h-5 text-gray-500'/></Button>
-                </form>
+                </form> */}
                 <Button onClick={()=>{
                     handleModalId('addProductModal')
                 }} classname='group flex items-center hover:bg-green-500 hover:border-green-500'>
                     <PlusIcon className='group-hover:text-white w-5 h-5 stroke-2' />
-                    Add Product
+                    Product
                 </Button>
+                <Button onClick={()=>{
+                    handleModalId('addCategoryModal')
+                }} classname='group flex items-center hover:bg-orange-500 hover:border-orange-500'>
+                    <PlusIcon className='group-hover:text-white w-5 h-5 stroke-2' />
+                    Category
+                </Button>
+                
             </div>
             {/* {showAdd&&<div className={`w-full h-fit flex flex-wrap lg:flex-row lg:justify-evenly gap-4 justify-center relative py-5`}>
                 <Button classname='absolute w-fit h-fit border-none -bottom-5 right-[50% - 140px] p-0 hover:bg-transparent flex items-center gap-2' onClick={()=>setShowAdd(false)}>

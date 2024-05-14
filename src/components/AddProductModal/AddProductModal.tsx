@@ -33,7 +33,7 @@ function AddProductModal() {
     }
     
   return (
-    <div className={style.main+' w-fit h-fit flex flex-wrap lg:flex-row lg:justify-evenly gap-8 justify-center relative py-5 rounded-lg p-4 bg-slate-100 drop-shadow-2xl'} onClick={e=>e.stopPropagation()}>
+    <div className={style.main+' w-fit h-fit flex flex-wrap lg:flex-row lg:justify-evenly gap-8 justify-center relative py-5 rounded-lg p-4 bg-white drop-shadow-2xl'} onClick={e=>e.stopPropagation()}>
         <form className='gap-3 flex flex-col'>
             <h2 className='text-xl font-bold'>Add Product</h2>
             {
