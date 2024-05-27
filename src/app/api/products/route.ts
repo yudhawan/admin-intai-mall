@@ -24,10 +24,9 @@ export const POST =async (req:NextRequest)=>{
         const data = await req.json()
         const img = data?.image?await cloudinary.uploader.upload(data?.image,{folder:'products'}):{url:''}
         if(img.url && data?.image){
-            data.image=img.url
-            product = await prisma?.products.create({data:data})
+            data.products.image=img.url
+            product = await prisma?.products.create({data:data.products})
         }
-        console.log(product)
         return res.json(product,{status:202})
     } catch (error) {
         console.log(error)

@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import { handleValidationForm, numberFormatMoney } from '@/services/services'
-import {  useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRedux } from '@/redux/useRedux'
-import { addProduct, setAddProductState } from '@/redux/reducers/productsReducer'
+import { setAddProductState } from '@/redux/reducers/productsReducer'
 import {  ProductDataInput } from '@/type'
 import Button from '../Button/Button'
 import InputComponent from '../InputComponent/InputComponent'
 import style from './AddProductModal.module.scss'
+import { addProduct } from '@/redux/actions/productsAction'
 function AddProductModal() {
     const {dispatch,selector}= useRedux()
     const {addProductState} = selector(state=>state.products)
