@@ -30,6 +30,7 @@ function ProductContainer({allProducts}:{allProducts:any}) {
     useEffect(()=>{
         dispatch(setProducts(allProducts))
     },[allProducts])
+    console.log(allProducts)
   return (
     <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4 bg-gray-100`}>
         

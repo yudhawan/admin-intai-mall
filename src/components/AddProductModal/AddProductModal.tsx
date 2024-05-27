@@ -25,8 +25,7 @@ function AddProductModal() {
         let reader = new FileReader()
         reader.readAsDataURL(image[0])
         reader.onload=async function () {
-            // @ts-ignore
-            dispatch(addProduct({...addProductState,image:reader.result??''}))
+            dispatch(addProduct({products:addProductState,image:reader.result??''}))
         }
         setImage('')
         setPreview('')

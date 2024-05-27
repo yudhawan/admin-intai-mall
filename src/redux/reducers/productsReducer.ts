@@ -1,7 +1,7 @@
 import { ProductDataInput, ProductProp } from '@/type'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-export const addProduct = createAsyncThunk('products/addProduct',async(data)=>{
+export const addProduct = createAsyncThunk('products/addProduct',async(data:{products:ProductDataInput,image:string | ArrayBuffer})=>{
   const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
     method:'post',
     body:JSON.stringify(data)
