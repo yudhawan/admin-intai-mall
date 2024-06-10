@@ -1,0 +1,19 @@
+import { NextRequest } from "next/server"
+import prisma from "@/lib/prisma"
+import { cloud, res } from "@/lib/serverServices"
+export const DELETE = async (req:NextRequest)=>{
+    try {
+        const data = await req.json()
+        const imgId = data?.img.split('/')
+        const imgDirId=imgId[imgId.length-2]
+        const imgPubId = imgId[imgId.length-1].split('.')[0]
+        const product = await prisma.products.delete({where:{
+            id:data.id
+        }})
+        cloud.uploader.destroy(`${imgDirId}/${imgPubId}`,{resource_type:'image'}).then(a=>console.log(a))
+        return res.json(product,{status:202})
+    } catch (error) {
+        console.log(error)
+        return res.json(error,{status:405})
+    }
+}

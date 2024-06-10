@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export const numberFormatMoney = (val:number)=>{
     const currency = new Intl.NumberFormat('en-En',{
         style:'currency',
@@ -5,7 +7,7 @@ export const numberFormatMoney = (val:number)=>{
     }).format(val)
     return currency
 }
-export const handleValidationForm = (obj:object):string[]=>{
+export const handleValidationForm = (obj:object,setValidation:Dispatch<SetStateAction<string[]>>):string[]=>{
     const checkValue = (value:any):boolean=> value===null || value===undefined || (typeof value==='string' && value.trim()==='') || (typeof value==='object' && Object.keys(value).every(checkValue))
     const emptyKeys:string[]=[]
     const checkProp = (obj:any,currentPath=''):void=>{
@@ -35,6 +37,5 @@ export const ImageReader = (val:ImgReaderProp)=>{
         })
         
     }
-    console.log(typeof tmp)
     return tmp
 }

@@ -22,7 +22,7 @@ function AddProductModal() {
     }
     function handleSubmit(e:React.MouseEvent) {
         e.preventDefault()
-        if(handleValidationForm(addProductState).length) return setValidation(handleValidationForm(addProductState))
+        if(handleValidationForm(addProductState,setValidation).length) return;
         let reader = new FileReader()
         reader.readAsDataURL(image[0])
         reader.onload=async function () {
@@ -46,6 +46,9 @@ function AddProductModal() {
                     setImage(file)
                 }
             }}  />
+            <select>
+
+            </select>
             <Button onClick={handleSubmit}>submit</Button>
         </form>
         <div className='w-72 h-auto p-2 flex flex-col border border-gray-400 rounded-lg'>

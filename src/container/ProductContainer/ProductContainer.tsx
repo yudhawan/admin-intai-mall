@@ -2,17 +2,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import InputComponent from '../../components/InputComponent/InputComponent'
 import Button from '../../components/Button/Button'
-import { setProducts } from '@/redux/reducers/productsReducer'
+import { setProducts,setCategories } from '@/redux/reducers/productsReducer'
 import { useRedux } from '@/redux/useRedux'
 import { ModalContext } from '@/constant/ModalContext'
-import { ModalContextProp } from '@/type'
+import { CategoryProp, ModalContextProp, ProductProp } from '@/type'
 import { MagnifyingGlassIcon, PlusIcon} from '@heroicons/react/24/outline'
 import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import Product from '@/components/Product/Product'
 import style from './ProductContainer.module.scss'
 import { deleteProduct } from '@/redux/actions/productsAction'
 
-function ProductContainer({allProducts}:{allProducts:any}) {
+function ProductContainer({allProducts,allCategories}:{allProducts:ProductProp[],allCategories:CategoryProp[]}) {
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
     const {dispatch,selector}= useRedux()
     const {isLoading,products} = selector(state=>state.products)
@@ -30,6 +30,7 @@ function ProductContainer({allProducts}:{allProducts:any}) {
     },[isLoading])
     useEffect(()=>{
         dispatch(setProducts(allProducts))
+        dispatch(setCategories(allCategories))
     },[allProducts])
   return (
     <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4 bg-gray-100`}>

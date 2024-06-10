@@ -1,4 +1,4 @@
-import { ProductDataInput, ProductProp } from '@/type'
+import { CategoryProp, ProductDataInput, ProductProp } from '@/type'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import productsActions from '../actions/productsAction'
 
@@ -6,6 +6,7 @@ import productsActions from '../actions/productsAction'
 
 export interface ProductsState {
   products: ProductProp[]
+  categories:CategoryProp[]
   cart: object[]
   addProductState:ProductDataInput
   isLoading:boolean
@@ -15,6 +16,7 @@ export interface ProductsState {
 const initialState: ProductsState = {
   products: [],
   cart:[],
+  categories:[],
   addProductState:{name:'',price:'',stock:''},
   isLoading:false,
   error:'',
@@ -30,6 +32,9 @@ export const productsSlice = createSlice({
     },
     setProducts:(state,action)=>{
       state.products=action.payload
+    },
+    setCategories:(state,action)=>{
+      state.categories=action.payload
     }
   },
   extraReducers:builder=>{
@@ -37,6 +42,6 @@ export const productsSlice = createSlice({
   }
 })
 
-export const { setAddProductState,setProducts } = productsSlice.actions
+export const { setAddProductState,setProducts,setCategories } = productsSlice.actions
 
 export default productsSlice.reducer

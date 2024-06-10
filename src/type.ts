@@ -21,7 +21,7 @@ export type ProductProp={
     stock: string
     image?: string
     desc?: string
-    category? :object
+    category? :CategoryProp
     caregoryId? : string
     deleteFn?:()=>void
 }
@@ -42,4 +42,10 @@ export type ProductDataInput={
     name:string,
     price:string | number,
     stock:string | number,
+}
+
+export type CategoryProp={
+    id:string
+    name:string
+    products?:ProductProp[]
 }
