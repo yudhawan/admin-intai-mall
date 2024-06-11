@@ -37,3 +37,10 @@ model Banners {
   type        String
   create_data DateTime @default(now())
 }
+
+model Admin{
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  username String
+  password String
+  created_at DateTime @default(now())
+}
