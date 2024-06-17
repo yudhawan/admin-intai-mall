@@ -1,11 +1,15 @@
 import { Dispatch, SetStateAction } from "react"
 
-export const numberFormatMoney = (val:number)=>{
-    const currency = new Intl.NumberFormat('en-En',{
+type optionProp={
+    currency:string | 'USD' | 'IDR'
+    format:string | 'en-En' | 'id-ID'
+}
+export const numberFormatMoney = (val:number,{currency='USD',format='en-En'}:optionProp)=>{
+    const main = new Intl.NumberFormat(format,{
         style:'currency',
-        currency:'USD',
+        currency:currency,
     }).format(val)
-    return currency
+    return main
 }
 export const handleValidationForm = (obj:object,setValidation:Dispatch<SetStateAction<string[]>>):string[]=>{
     const checkValue = (value:any):boolean=> value===null || value===undefined || (typeof value==='string' && value.trim()==='') || (typeof value==='object' && Object.keys(value).every(checkValue))
