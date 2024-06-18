@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction } from "react"
 
 type optionProp={
-    currency:string | 'USD' | 'IDR'
-    format:string | 'en-En' | 'id-ID'
+    val:number
+    currency?:string | 'USD' | 'IDR'
+    format?:string | 'en-En' | 'id-ID'
 }
-export const numberFormatMoney = (val:number,{currency='USD',format='en-En'}:optionProp)=>{
+export const numberFormatMoney = ({val,currency='USD',format='en-En'}:optionProp)=>{
     const main = new Intl.NumberFormat(format,{
         style:'currency',
         currency:currency,

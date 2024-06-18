@@ -53,7 +53,7 @@ function AddProductModal() {
         </form>
         <div className='w-72 h-auto p-2 flex flex-col border border-gray-400 rounded-lg'>
             <Image src={preview?preview:'https://placehold.co/280x280?text=Image'} className='w-full h-52 object-contain' alt='img' width={280} height={280} />
-            {addProductState.price&&<h2 className='capitalize font-bold'>{numberFormatMoney(+addProductState.price)}</h2>}
+            {addProductState.price&&<h2 className='capitalize font-bold'>{numberFormatMoney({val:+addProductState.price})}</h2>}
             {addProductState.name&&<h2 className='capitalize font-semibold line-clamp-1'>{addProductState.name}</h2>}
             {addProductState.stock&&<span className='capitalize text-sm mt-2'>stock : {addProductState.stock}</span>}
         </div>
