@@ -34,7 +34,8 @@ model Category {
 
 model Banners {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  type        String
+  image String
+  type        String?
   create_data DateTime @default(now())
 }
 

@@ -1,6 +1,7 @@
-import { cloud, res } from "@/lib/serverServices"
+import { res } from "@/lib/serverServices"
 import { NextRequest } from "next/server"
 import prisma from "@/lib/prisma";
+import { cloud } from "../cloudinary_config";
 
 export const POST =async (req:NextRequest)=>{
     try {

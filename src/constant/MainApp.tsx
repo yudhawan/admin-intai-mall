@@ -7,18 +7,23 @@ import ModalProvider from './ModalProvider'
 import ModalWindow from '@/ModalComponents/ModalWindow'
 import BottomTabNavigation from '@/container/BottomTabNavigation/BottomTabNavigation'
 import style from './MainApp.module.scss'
+import PrivateComponent from '@/PrivateComponent/PrivateComponent'
 function MainApp({children}:{children:ReactNode}) {
   return (
    <div className={style.main+' bg-gray-100'}>
         <Provider store={store}>
-            <Sidebar/>
+            <PrivateComponent>
+              <Sidebar/>
+            </PrivateComponent>
             <div className={style.container+' md:ml-64 relative w-[calc(100% - 256px)] md:h-full '}>
               <ModalProvider>
                 {children}
                 <ModalWindow/>
               </ModalProvider>
             </div>
-            <BottomTabNavigation/>
+            <PrivateComponent>
+              <BottomTabNavigation/>
+            </PrivateComponent>
         </Provider>
    </div>
   )
