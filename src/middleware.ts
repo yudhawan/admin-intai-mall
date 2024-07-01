@@ -12,12 +12,9 @@ export function middleware(req: Request) {
     })
     
     const cookie = cookies().get('ita')
-    console.log()
     if(!cookie) return res.redirect(new URL('/login',req.url))
     return res.next()
 }
-
-// specify the path regex to apply the middleware to
-// export const config = {
-//     matcher: '/api/:path*',
-// }
+export const config = {
+    matcher: '/',
+}

@@ -1,7 +1,7 @@
+import LoginContainer from "@/container/LoginContainer/LoginContainer"
+
 function LoginPage() {
-  return (
-    <div>LoginPage</div>
-  )
+  return <LoginContainer/>
 }
 
 export default LoginPage

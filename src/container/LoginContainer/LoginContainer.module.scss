@@ -1,7 +1,29 @@
 .main{
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+.inputContainer{
+    max-width: 700px;
+    min-width: 300px;
+    padding-inline: 8px;
+    padding-block: 8px;
+    border-radius: 10px;
+}
+.inputContainer:focus{
+    outline: none;
 }
 .inputContainer::placeholder{
     text-transform: capitalize;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
 }

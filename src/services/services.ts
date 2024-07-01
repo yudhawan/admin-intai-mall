@@ -12,7 +12,7 @@ export const numberFormatMoney = ({val,currency='USD',format='en-En'}:optionProp
     }).format(val)
     return main
 }
-export const handleValidationForm = (obj:object,setValidation:Dispatch<SetStateAction<string[]>>):string[]=>{
+export const handleValidationForm = (obj:object,setValidation?:Dispatch<SetStateAction<string[]>>):string[]=>{
     const checkValue = (value:any):boolean=> value===null || value===undefined || (typeof value==='string' && value.trim()==='') || (typeof value==='object' && Object.keys(value).every(checkValue))
     const emptyKeys:string[]=[]
     const checkProp = (obj:any,currentPath=''):void=>{
@@ -24,6 +24,7 @@ export const handleValidationForm = (obj:object,setValidation:Dispatch<SetStateA
         }
     }
     checkProp(obj)
+    setValidation&&setValidation(emptyKeys)
     return emptyKeys
 }
 type ImgReaderProp = {
