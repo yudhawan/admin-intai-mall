@@ -2,7 +2,7 @@ import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
 import { ProductsState } from "../reducers/productsReducer";
 import { ProductDataInput, ProductProp } from "@/type";
 export const addProduct = createAsyncThunk('products/addProduct',async(data:{products:ProductDataInput,image:string | ArrayBuffer})=>{
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/products',{
       method:'post',
       body:JSON.stringify(data)
     })
@@ -10,14 +10,14 @@ export const addProduct = createAsyncThunk('products/addProduct',async(data:{pro
     return result
   })
   export const getProduct = createAsyncThunk('products/getProduct',async()=>{
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/products',{
       method:'get',
     })
     const result = await response.json()
     return result
   })
   export const deleteProduct = createAsyncThunk('products/deleteProduct',async(data:{id:string,img:string|undefined})=>{
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/products',{
       method:'delete',
       body:JSON.stringify(data)
     })

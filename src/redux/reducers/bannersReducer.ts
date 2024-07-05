@@ -7,7 +7,7 @@ type BannersState = {
     error:string
 }
 export const addBanners = createAsyncThunk('banners/addBanners',async({images}:{images:ImagesBanner[]})=>{
-    const addBanners = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/banners',{
+    const addBanners = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/banners',{
         method:'POST',
         body:JSON.stringify(images)
     })

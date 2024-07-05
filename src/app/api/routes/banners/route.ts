@@ -1,8 +1,8 @@
-import { res } from "@/lib/serverServices";
+import { res } from "../../libsServer/argApi";;
 import { NextRequest } from "next/server";
-import prisma from "@/lib/prisma";
+import prisma from "@/lib/prisma"
 import { ImagesBanner } from "@/type";
-import { cloud } from "../cloudinary_config";
+import { cloud } from "../../cloudinary_config";
 
 
 export const POST =async (req:NextRequest)=>{

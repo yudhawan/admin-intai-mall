@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server"
 import prisma from "@/lib/prisma"
-import { res } from "@/lib/serverServices"
-import { cloud } from "../cloudinary_config"
+import { res } from "../../libsServer/argApi";
+import { cloud } from "../../cloudinary_config"
 export const DELETE = async (req:NextRequest)=>{
     try {
         const data = await req.json()

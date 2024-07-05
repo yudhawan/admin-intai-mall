@@ -2,7 +2,7 @@ import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
 import { ProductDataInput, ProductProp } from "@/type";
 import { AdminState } from "../reducers/adminReducers";
 export const loginAction = createAsyncThunk('admin/loginAction',async(data:{username:string,password:string})=>{
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/products',{
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/products',{
       method:'post',
       body:JSON.stringify(data)
     })

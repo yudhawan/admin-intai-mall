@@ -1,7 +1,8 @@
 import { NextRequest } from "next/server";
-import prisma from '../../../lib/prisma'
-import { private_scrt, res } from "@/lib/serverServices";
+import prisma from "@/lib/prisma"
 import { encryptJWT } from "@/lib/tokenServices";
+import { private_scrt } from "../../libsServer/encrypt";
+import { res } from "../../libsServer/argApi";
 async function POST(req:NextRequest){
     try {
         const data = await req.json()

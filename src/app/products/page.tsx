@@ -1,6 +1,6 @@
 import ProductsContainer from '@/container/ProductContainer/ProductContainer'
-import { getCategories, getProducts } from '@/lib/serverServices'
 import React from 'react'
+import { getCategories, getProducts } from '../api/libsServer/serverServices'
 
 
 async function ProductPage() {

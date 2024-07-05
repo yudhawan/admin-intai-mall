@@ -1,4 +1,4 @@
-import { res } from "@/lib/serverServices";
+import { res } from "../../libsServer/argApi";;
 import { NextRequest } from "next/server";
 
 export const GET =(req:NextRequest)=>{

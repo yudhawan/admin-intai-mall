@@ -1,7 +1,7 @@
-import { res } from "@/lib/serverServices"
+import { res } from "../../libsServer/argApi";
 import prisma from "@/lib/prisma"
 import { NextRequest } from "next/server"
-import { cloud } from "../cloudinary_config"
+import { cloud } from "../../cloudinary_config"
 export const POST =async (req:NextRequest)=>{
     try {
         let product = {}

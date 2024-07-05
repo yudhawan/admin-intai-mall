@@ -12,7 +12,7 @@ export type AdminState = {
     error:string
 }
 export const loginAdmin = createAsyncThunk('admin/loginAdmin',async({images}:{images:ImagesBanner[]})=>{
-    const loginAdmin = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/banners',{
+    const loginAdmin = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/banners',{
         method:'POST',
         body:JSON.stringify(images)
     })
