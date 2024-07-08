@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import { res } from "./argApi"
 
 export const getProducts=async()=>{
     'use server'
@@ -32,18 +33,19 @@ export const checkingTokenLoginValidation = async()=>{
 
 
 export async function onLogin(data:{username:FormDataEntryValue,password:FormDataEntryValue}) {
-    cookies().set('asuu','mmk')
     try {
-        // const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/dologin',{
-        //     method:'post',
-        //     body:JSON.stringify({asu:'sadda'})
-        // })
-        // return []
+        const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/doLogin',{
+            method:'post',
+            // body:JSON.stringify({asu:'sadda'})
+        })
+        const result = await response.json()
+        console.log(result.token)
+        if(result?.token && response.status!==200) {
+            cookies().set('imt',result?.token)
+            redirect('/')
+        }
+        else res.json({msg:'Error'},{status:405})
     } catch (error) {
         console.log('ngeror loh : ',error)
     }
-    // const result = await response.json()
-    // if(result.status===200) return !!result
-    // return false
-    redirect('/products')
 }

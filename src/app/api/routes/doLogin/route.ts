@@ -2,7 +2,6 @@ import { NextRequest } from "next/server";
 import { res } from "../../libsServer/argApi";
 
 export const POST =async (req: NextRequest)=>{
-    const data = await req.json()
-    console.log(req)
-    return res.json({msg:'success'},{status:200})
+    // const data = await req.json()
+    return res.json({msg:'success',token:'das'},{status:200,statusText:'Logged In'})
 }
