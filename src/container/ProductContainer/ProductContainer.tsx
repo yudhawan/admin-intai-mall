@@ -32,6 +32,7 @@ function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:Prod
         dispatch(setProducts(getAllProducts))
         dispatch(setCategories(getAllCategories))
     },[getAllProducts])
+    
   return (
     <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4 bg-gray-100`}>
         
