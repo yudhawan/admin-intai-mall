@@ -6,7 +6,7 @@ import { getCategories, getProducts } from '../api/libsServer/serverServices'
 async function ProductPage() {
   const getAllProducts = await getProducts()
   const getAllCategories = await getCategories()
-  return <ProductsContainer allProducts={getAllProducts} allCategories={getAllCategories} />
+  return <ProductsContainer getAllProducts={getAllProducts} getAllCategories={getAllCategories} />
 }
 
 export default ProductPage
