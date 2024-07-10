@@ -1,5 +1,5 @@
 'use client'
-import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import InputComponent from '../../components/InputComponent/InputComponent'
 import Button from '../../components/Button/Button'
 import { setProducts,setCategories } from '@/redux/reducers/productsReducer'
@@ -11,8 +11,6 @@ import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import Product from '@/components/Product/Product'
 import style from './ProductContainer.module.scss'
 import { deleteProduct } from '@/redux/actions/productsAction'
-import AllProducts from '@/app/products/@allProducts/page'
-import AllCategories from '@/app/products/@allCategories/page'
 
 function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:ProductProp[],getAllCategories:CategoryProp[]}) {
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
