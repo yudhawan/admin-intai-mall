@@ -44,4 +44,5 @@ model Admin{
   username String
   password String
   created_at DateTime @default(now())
+  token String?
 }

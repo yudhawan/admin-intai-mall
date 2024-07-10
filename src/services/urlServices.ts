@@ -3,7 +3,7 @@ import { BuildingStorefrontIcon, RectangleStackIcon, Square2StackIcon, Squares2X
 export const urlMenu = [
     {
         name:'dashboard',
-        url:'/'
+        url:'/dashboard'
     },
     {
         name:'products',

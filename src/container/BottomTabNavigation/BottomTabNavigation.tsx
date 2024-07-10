@@ -9,7 +9,7 @@ function BottomTabNavigation() {
     const pathname = usePathname()
   return (
     <div className={`${style.main} flex justify-evenly fixed bottom-0 left-0 h-16 py-2 drop-shadow-lg bg-white md:hidden`}>
-        <Link href={'/'} className={`${style.link} ${pathname==='/'?style.active:''} border-none !p-0 hover:!bg-transparent justify-between`}>
+        <Link href={'/dashboard'} className={`${style.link} ${pathname==='/dashboard'?style.active:''} border-none !p-0 hover:!bg-transparent justify-between`}>
             <HomeIcon className='w-5'/>
             <span className='font-bold text-[10px]'>Home</span>
         </Link>
@@ -19,7 +19,7 @@ function BottomTabNavigation() {
                 <span className='font-bold text-[10px]'>{val.name}</span>
             </Link>)
         }
-        <Link href={'setting'} className={`${style.link} ${pathname==='setting'?style.active:''} border-none !p-0 hover:!bg-transparent`}>
+        <Link href={'setting-page'} className={`${style.link} ${pathname==='setting'?style.active:''} border-none !p-0 hover:!bg-transparent`}>
             <CogIcon className='w-fit'/>
             <span className='font-bold text-[10px]'>setting</span>
         </Link>

@@ -6,10 +6,10 @@ async function generateToken():Promise<{public_key:KeyLike,private_key:KeyLike}>
     return { public_key:publicKey,private_key:privateKey}
 }
 
-async function encryptJWT(payload:JWTPayload, scrt:Uint8Array):Promise<string>{
+async function encryptJWT({payload,scrt,audience,issued}:{payload:JWTPayload, scrt:Uint8Array,issued?:string,audience?:string}):Promise<string>{
     const jwt = await new SignJWT(payload)
         .setProtectedHeader({ alg: 'HS256' })
-        .setIssuedAt()
+        .setIssuedAt(issued)
         .setExpirationTime('6h')
         .sign(scrt)
     return jwt

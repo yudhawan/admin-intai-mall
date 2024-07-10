@@ -9,6 +9,7 @@ import ModalWindow from '@/ModalComponents/ModalWindow'
 import BottomTabNavigation from '@/container/BottomTabNavigation/BottomTabNavigation'
 import PrivateComponent from '@/PrivateComponent/PrivateComponent'
 import style from './MainApp.module.scss'
+import App from './App'
 function MainApp({children}:{children:ReactNode}) {
   const pathname=usePathname()
   const isLoginPage = pathname==='/login'
@@ -20,7 +21,9 @@ function MainApp({children}:{children:ReactNode}) {
             </PrivateComponent>
             <div className={style.container+` ${!isLoginPage?' md:ml-64':''} relative w-[calc(100% - 256px)] md:h-full`}>
               <ModalProvider>
-                {children}
+                {/* <App> */}
+                  {children}
+                {/* </App> */}
                 <ModalWindow/>
               </ModalProvider>
             </div>
