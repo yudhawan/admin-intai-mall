@@ -13,6 +13,7 @@ import style from './ClientApp.module.scss'
 function ClientApp({children,user}:{children:ReactNode,user:string}) {
   const pathname=usePathname()
   const isLoginPage = pathname==='/login'
+  const user_stat = JSON.parse(user)
   return (
     <div className={style.main+' bg-gray-100'}>
         <Provider store={store}>
@@ -20,7 +21,7 @@ function ClientApp({children,user}:{children:ReactNode,user:string}) {
               <Sidebar/>
             </PrivateComponent>
             <div className={style.container+` ${!isLoginPage?' md:ml-64':''} relative w-[calc(100% - 256px)] md:h-full`}>
-              <ModalProvider user={{token:JSON.parse(user)?.token}}>
+              <ModalProvider user={user_stat}>
                   {children}
                 <ModalWindow/>
               </ModalProvider>

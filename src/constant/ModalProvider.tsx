@@ -8,8 +8,8 @@ type modalProviderProp={
     modalId:string
     isLoading:boolean
 }
-function ModalProvider({children,user}:{children:ReactNode,user:{token:string}}) {
-    const {dispatch,selector} = useRedux()
+function ModalProvider({children,user}:{children:ReactNode,user:any}) {
+    const {dispatch} = useRedux()
     dispatch(setCookieToken(user?.token))
     const router=useRouter()
     const [data,setData]=useState<modalProviderProp>({
@@ -23,9 +23,7 @@ function ModalProvider({children,user}:{children:ReactNode,user:{token:string}})
         if(val) setData({active:true,modalId:'loading',isLoading:val})
         else setData({active:false,modalId:'',isLoading:val})
     }
-    useEffect(()=>{
-        if(!user.token) router.push('/login')
-    },[user])
+    if(!user?.token)  router.push('/login')
   return (
     <ModalContext.Provider value={{
         active:data.active,

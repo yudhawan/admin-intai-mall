@@ -3,7 +3,6 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { res } from "./argApi"
-import { revalidateTag } from "next/cache"
 export const getProducts=async()=>{
     try {
         const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/getProducts',{

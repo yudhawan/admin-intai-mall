@@ -6,7 +6,7 @@ import LoginContainer from '@/container/LoginContainer/LoginContainer'
 async function MainApp({children}:{children:ReactNode}) {
   const response = await checkingTokenLoginValidation()
   const user = JSON.stringify(response)
-  if(!user) return <LoginContainer/>
+  if(!JSON.parse(user)?.token) return <LoginContainer/>
   return (
    <ClientApp user={user}>
       {children}
