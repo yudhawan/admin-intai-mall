@@ -1,9 +1,13 @@
+'use client'
 import React from 'react'
 import BannerContainer from '../BannerContainer/BannerContainer'
 import style from './DashboardContainer.module.scss'
 import BoxMenuLink from '@/components/BoxMenuLink/BoxMenuLink'
 import { BoxMenuUrl } from '@/services/urlServices'
+import { useRedux } from '@/redux/useRedux'
 function DashboardContainer() {
+  const {selector} = useRedux()
+  const {token} = selector(state=> state.user)
   return (
     <div className={`${style.main} p-8 flex-col gap-10`}>
       <div className={`${style.orderContainer} flex flex-col gap-2`}>

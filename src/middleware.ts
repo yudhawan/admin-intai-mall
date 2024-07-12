@@ -9,10 +9,11 @@ export function middleware(req: Request) {
             'Content-Type': 'text/plain'
         }
     })
-    const cookie = cookies().get('imt')
+    console.log(req)
+    const cookie = cookies().get('')?.value
     if(!cookie) return res.redirect(new URL('/login',req.url))
     return res.next()
 }
 export const config = {
-    matcher: ['/api','/'],
+    matcher: ['/api'],
 }

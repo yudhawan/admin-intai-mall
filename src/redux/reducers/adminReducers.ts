@@ -43,3 +43,7 @@ export const adminSlice = createSlice({
         adminAction(builder)
     }
 })
+
+export const {setCookieToken} = adminSlice.actions
+
+export default adminSlice.reducer

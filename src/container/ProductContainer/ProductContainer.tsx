@@ -12,7 +12,7 @@ import Product from '@/components/Product/Product'
 import style from './ProductContainer.module.scss'
 import { deleteProduct } from '@/redux/actions/productsAction'
 
-function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:ProductProp[],getAllCategories:CategoryProp[]}) {
+async function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:string,getAllCategories:string}) {
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
     const {dispatch,selector}= useRedux()
     const {isLoading,products} = selector(state=>state.products)
@@ -29,9 +29,9 @@ function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:Prod
         handleIsLoading(isLoading)
     },[isLoading])
     useEffect(()=>{
-        dispatch(setProducts(getAllProducts))
-        dispatch(setCategories(getAllCategories))
-    },[getAllProducts])
+        dispatch(setProducts(JSON.parse(getAllProducts)))
+        dispatch(setCategories(JSON.parse(getAllCategories)))
+    },[])
     
   return (
     <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4 bg-gray-100`}>

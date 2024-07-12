@@ -1,11 +1,17 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { ModalContext } from './ModalContext'
+import { useRedux } from '@/redux/useRedux'
+import { setCookieToken } from '@/redux/reducers/adminReducers'
+import { useRouter } from 'next/navigation'
 type modalProviderProp={
     active:boolean
     modalId:string
     isLoading:boolean
 }
-function ModalProvider({children}:{children:ReactNode}) {
+function ModalProvider({children,user}:{children:ReactNode,user:{token:string}}) {
+    const {dispatch,selector} = useRedux()
+    dispatch(setCookieToken(user?.token))
+    const router=useRouter()
     const [data,setData]=useState<modalProviderProp>({
         modalId:'',
         active:false,
@@ -17,6 +23,9 @@ function ModalProvider({children}:{children:ReactNode}) {
         if(val) setData({active:true,modalId:'loading',isLoading:val})
         else setData({active:false,modalId:'',isLoading:val})
     }
+    useEffect(()=>{
+        if(!user.token) router.push('/login')
+    },[user])
   return (
     <ModalContext.Provider value={{
         active:data.active,
