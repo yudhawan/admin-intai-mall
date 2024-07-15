@@ -49,3 +49,7 @@ export type CategoryProp={
     name:string
     products?:ProductProp[]
 }
+export type UserStateType={
+    username:string
+    token?:string
+}
