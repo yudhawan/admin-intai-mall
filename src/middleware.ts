@@ -9,7 +9,6 @@ export function middleware(req: Request) {
             'Content-Type': 'text/plain'
         }
     })
-    console.log(req)
     const cookie = cookies().get('')?.value
     if(!cookie) return res.redirect(new URL('/login',req.url))
     return res.next()

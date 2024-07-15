@@ -9,8 +9,8 @@ import { CategoryProp, ModalContextProp, ProductProp } from '@/type'
 import { MagnifyingGlassIcon, PlusIcon} from '@heroicons/react/24/outline'
 import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import Product from '@/components/Product/Product'
-import style from './ProductContainer.module.scss'
 import { deleteProduct } from '@/redux/actions/productsAction'
+import style from './ProductContainer.module.scss'
 
 async function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:string,getAllCategories:string}) {
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
