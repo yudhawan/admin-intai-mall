@@ -1,4 +1,6 @@
+import { UserStateType } from "@/type"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { deleteCookie } from "cookies-next"
 
 export function createGlobalState<T>(queryKey:unknown, initialState:T | null = null) {
     return ()=>{
@@ -15,7 +17,15 @@ export function createGlobalState<T>(queryKey:unknown, initialState:T | null = n
         const setUser = (data: Partial<T>)=>{
             queryClient.setQueryData([queryKey],data)
         }
-        return {data,isLoading,error,setUser}
+        const logoutUser = ()=>{
+            const newSate:UserStateType = {
+                username:"",
+                token:""
+            }
+            deleteCookie("imt")
+            queryClient.setQueryData([queryKey],newSate)
+        }
+        return {data,isLoading,error,setUser,logoutUser}
 
     }
 }

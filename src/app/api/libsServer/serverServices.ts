@@ -64,9 +64,9 @@ export async function onLogin(data:{username:FormDataEntryValue,password:FormDat
     else res.json({msg:'Error'},{status:405})
    
 }
-export async function handleLogout() {
-    const cookie = cookies().get('imt')?.value
-    cookies().delete('imt')
+export async function handleLogout(cookie:string) {
+    // const cookie = cookies().get('imt')?.value
+    // cookies().delete('imt')
     await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/doLogout',{
         method:'post',
         body:JSON.stringify({token:cookie})
