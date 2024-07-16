@@ -23,6 +23,8 @@ model Products {
   category    Category? @relation(fields: [caregoryId], references: [id])
   caregoryId  String?   @db.ObjectId
   create_data DateTime  @default(now())
+  discount  Discount? @relation(fields: [discountId],references: [id])
+  discountId String? @db.ObjectId
 }
 
 model Category {
@@ -45,4 +47,11 @@ model Admin{
   password String
   created_at DateTime @default(now())
   token String?
+}
+
+model Discount{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  discount_name String
+  value Int
+  product Products[]
 }

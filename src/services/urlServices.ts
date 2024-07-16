@@ -10,8 +10,8 @@ export const urlMenu = [
         url:'/products'
     },
     {
-        name:'discounts',
-        url:'/discounts'
+        name:'All Users',
+        url:'/allUsers'
     },
     {
         name:'Orders',
