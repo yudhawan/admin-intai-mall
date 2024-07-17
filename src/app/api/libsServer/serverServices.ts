@@ -52,6 +52,7 @@ export const checkingTokenLoginValidation = async()=>{
 
 
 export async function onLogin(data:{username:FormDataEntryValue,password:FormDataEntryValue}) {
+    console.log(process.env.NEXT_PUBLIC_BASE_URL)
     const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/doLogin',{
         method:'post',
         body:JSON.stringify(data)

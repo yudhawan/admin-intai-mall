@@ -2,7 +2,7 @@ import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
 import { ProductsState } from "../reducers/productsReducer";
 import { ProductDataInput, ProductProp } from "@/type";
 export const addProduct = createAsyncThunk('products/addProduct',async(data:{products:ProductDataInput,image:string | ArrayBuffer})=>{
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/products',{
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/addProduct',{
       method:'post',
       body:JSON.stringify(data)
     })

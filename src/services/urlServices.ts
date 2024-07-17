@@ -6,15 +6,15 @@ export const urlMenu = [
         url:'/dashboard'
     },
     {
-        name:'products',
+        name:'all products',
         url:'/products'
     },
     {
-        name:'All Users',
-        url:'/allUsers'
+        name:'all users',
+        url:'/users'
     },
     {
-        name:'Orders',
+        name:'orders',
         url:'/orders'
     },
 ]

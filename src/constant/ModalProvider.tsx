@@ -23,7 +23,7 @@ function ModalProvider({children,user}:{children:ReactNode,user:any}) {
         if(val) setData({active:true,modalId:'loading',isLoading:val})
         else setData({active:false,modalId:'',isLoading:val})
     }
-    if(!user?.token)  router.push('/login')
+    // if(!user?.token)  router.push('/login')
   return (
     <ModalContext.Provider value={{
         active:data.active,

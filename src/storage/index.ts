@@ -14,9 +14,10 @@ export function createGlobalState<T>(queryKey:unknown, initialState:T | null = n
             refetchOnWindowFocus:false,
             refetchOnReconnect:false
         })
-        const setUser = (data: Partial<T>)=>{
-            queryClient.setQueryData([queryKey],data)
-        }
+        // const setProducts = (data: Partial<T>){}
+        // const setUser = (data: Partial<T>)=>{
+        //     queryClient.setQueryData([queryKey],data)
+        // }
         const logoutUser = ()=>{
             const newSate:UserStateType = {
                 username:"",
@@ -25,7 +26,6 @@ export function createGlobalState<T>(queryKey:unknown, initialState:T | null = n
             deleteCookie("imt")
             queryClient.setQueryData([queryKey],newSate)
         }
-        return {data,isLoading,error,setUser,logoutUser}
-
+        return {data,isLoading,error,logoutUser}
     }
 }

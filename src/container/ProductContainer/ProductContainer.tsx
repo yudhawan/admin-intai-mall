@@ -12,15 +12,18 @@ import Product from '@/components/Product/Product'
 import { deleteProduct } from '@/redux/actions/productsAction'
 import style from './ProductContainer.module.scss'
 
-async function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:string,getAllCategories:string}) {
+function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:string,getAllCategories:string}) {
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
     const {dispatch,selector}= useRedux()
     const {isLoading,products} = selector(state=>state.products)
     const [type,setType]=useState<string>('products')
     const [category,setCategory] = useState<string>('')
     
-    function handelAddCategory() {
-        console.log(category)
+    function handelAddCategory(a:string) {
+        console.log(a)
+    }
+    function kontol(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        
     }
     function handleDelete({id,img}:{id:string,img:string|undefined}) {
         dispatch(deleteProduct({id,img}))
@@ -32,7 +35,6 @@ async function ProductContainer({getAllProducts,getAllCategories}:{getAllProduct
         dispatch(setProducts(JSON.parse(getAllProducts)))
         dispatch(setCategories(JSON.parse(getAllCategories)))
     },[])
-    
   return (
     <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4 bg-gray-100`}>
         
@@ -43,7 +45,7 @@ async function ProductContainer({getAllProducts,getAllCategories}:{getAllProduct
                     <InputComponent onChange={e=>{}} type='text' placeholder='search' classname='border-none rounded-none p-0 w-full' />
                     <MagnifyingGlassIcon className='w-5 h-5 text-gray-500'/>
                 </div>
-                <Button onClick={()=>{
+                <Button onClick={(e)=>{
                     handleModalId('addProductModal')
                 }} classname='group flex items-center hover:bg-green-500 hover:border-green-500'>
                     <PlusIcon className='group-hover:text-white w-5 h-5 stroke-2' />
@@ -58,10 +60,6 @@ async function ProductContainer({getAllProducts,getAllCategories}:{getAllProduct
                 
             </div>
             
-            <div className='w-full flex gap-2 flex-wrap'>
-                <Button onClick={()=>setType('products')} classname={`${type=='products'&& 'bg-gray-500 hover:text-white'}`}>All Products</Button>
-                <Button onClick={()=>setType('categories')} classname={`${type=='categories'&& 'bg-gray-500 hover:text-white'}`}>All Categories</Button>
-            </div>
             {type==='products'&&<div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
                 {
                     products.length?products.map(val=> <Product key={val.id} id={val.id} name={val.name} price={val.price} stock={val.stock} image={val.image} deleteFn={()=>handleDelete({id:val.id,img:val.image})} />):<EmptyComponent/>

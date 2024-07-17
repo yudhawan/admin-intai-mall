@@ -7,6 +7,7 @@ function ModalWindow() {
   const {active,modalId,isLoading,handleActive,handleModalId} = useContext(ModalContext) as ModalContextProp
   const modal = ModalAppList.find(val=>val.id===modalId) as ModalAppProp
   function handlePropagation(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    e.preventDefault()
     if(!isLoading) {
       e.stopPropagation()
       handleActive(false)
