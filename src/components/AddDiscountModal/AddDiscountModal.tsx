@@ -6,7 +6,11 @@ import { setDiscount } from '@/redux/reducers/productsReducer'
 function AddDiscountModal() {
     const {selector,dispatch}=useRedux()
     const {addDiscountState} = selector(state=>state.products)
-    const handleInput=(e:ChangeEvent<HTMLInputElement | HTMLSelectElement>)=> dispatch(setDiscount({key:e.target.id,value:e.target.value}))
+    const handleInput=(e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>)=> {
+        const file = e.target as HTMLInputElement
+        if(e.target.id==='img') console.log(file.files)
+        dispatch(setDiscount({key:e.target.id,value:e.target.value}))
+    }
     
   return (
     <div className={style.main} onClick={e=>e.stopPropagation()}>
@@ -20,7 +24,7 @@ function AddDiscountModal() {
                 </select>
                 <InputComponent type='number' classname='w-full' placeholder='Value' id='value' value={addDiscountState.value} onChange={handleInput} />
             </div>
-            <InputComponent type='file' classname='w-full' accept='image/*' placeholder='Discount Name' />
+            <InputComponent type='file' classname='w-full' accept='image/*' id='img' placeholder='Discount Name' />
             <InputComponent type='submit' value={'Submit'} classname='bg-green-400 text-white hover:bg-green-500 cursor-pointer'  />
         </form>
     </div>

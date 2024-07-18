@@ -1,7 +1,14 @@
 import { CategoryProp, DiscountInputType, ProductDataInput, ProductProp } from '@/type'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import productsActions from '../actions/productsAction'
 
+interface DiscountPassPropType{
+  [key:string]:string|number
+}
+interface SetDiscountPassPropType{
+  key:string
+  value:string|number
+}
 
 
 export interface ProductsState {
@@ -9,7 +16,7 @@ export interface ProductsState {
   categories:CategoryProp[]
   cart: object[]
   addProductState:ProductDataInput
-  addDiscountState:DiscountInputType
+  addDiscountState:DiscountPassPropType
   isLoading:boolean
   error:string | object
 }
@@ -19,7 +26,7 @@ const initialState: ProductsState = {
   cart:[],
   categories:[],
   addProductState:{name:'',price:'',stock:''},
-  addDiscountState:{discount_name:'',picture:'',value:0,valType:''},
+  addDiscountState:{},
   isLoading:false,
   error:'',
 
@@ -38,9 +45,8 @@ export const productsSlice = createSlice({
     setCategories:(state,action)=>{
       state.categories=action.payload
     },
-    setDiscount:(state,{payload}:{payload:{key:string,value:string|number}})=>{
-      // @ts-ignore
-      state.addDiscountState[payload.key]=payload.value
+    setDiscount:(state,action:PayloadAction<SetDiscountPassPropType>)=>{
+      state.addDiscountState[action.payload.key]=action.payload.value
     }
   },
   extraReducers:builder=>{
