@@ -57,6 +57,12 @@ function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:stri
                     <PlusIcon className='group-hover:text-white w-5 h-5 stroke-2' />
                     Category
                 </Button>
+                <Button onClick={()=>{
+                    handleModalId('addDiscountModal')
+                }} classname='group flex items-center hover:bg-orange-500 hover:border-orange-500'>
+                    <PlusIcon className='group-hover:text-white w-5 h-5 stroke-2' />
+                    Discount
+                </Button>
                 
             </div>
             

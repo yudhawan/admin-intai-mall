@@ -1,0 +1,14 @@
+@mixin flex-row($justify:center,$align:center,$reverse:row,$gap:4px){
+    display: flex;
+    flex-direction: $reverse;
+    justify-content: $justify;
+    align-items: $align;
+    gap:$gap
+  }
+@mixin flex-column($justify:center,$align:center,$reverse:column,$gap:4px){
+    display: flex;
+    flex-direction: $reverse;
+    justify-content: $justify;
+    align-items: $align;
+    gap:$gap
+}

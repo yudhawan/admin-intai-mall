@@ -1,0 +1,8 @@
+@import "../../app/global.module.scss";
+.main{
+    @include flex-column();
+    background-color: white;
+    padding: 16px;
+    border-radius: 10px;
+}
+// w-fit h-fit flex flex-col lg:flex-row lg:justify-evenly gap-8 justify-center relative py-5 rounded-lg p-4 bg-white drop-shadow-2xl items-center

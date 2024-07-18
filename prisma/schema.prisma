@@ -53,5 +53,24 @@ model Discount{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   discount_name String
   value Int
+  valType String
+  picture String
   product Products[]
+  create_date DateTime @default(now())
+}
+
+model Users{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String 
+  email String
+  picture String?
+  orders Orders? @relation(fields: [orderId],references: [id])
+  orderId String? @db.ObjectId
+}
+
+model Orders{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  user Users[]
+  details Json
+  create_date DateTime @default(now())
 }

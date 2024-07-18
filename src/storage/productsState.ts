@@ -12,4 +12,4 @@ const productsState:ProductProp={
     caregoryId: "",
 }
 
-export const useProductsState = createGlobalState<ProductProp>(productsState)
+export const useProductsState = createGlobalState<ProductProp>("products",productsState)

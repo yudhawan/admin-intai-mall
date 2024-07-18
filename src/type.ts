@@ -53,3 +53,10 @@ export type UserStateType={
     username:string
     token?:string
 }
+
+export type DiscountInputType={
+    discount_name: string
+    value:number
+    valType:string
+    picture?:string
+}
