@@ -20,7 +20,7 @@ function ClientApp({children,user}:{children:ReactNode,user:string}) {
   return (
     <div className={style.main+' bg-gray-100'}>
         <Provider store={store}>
-          {/* <QueryClientProvider client={querClient}> */}
+          <QueryClientProvider client={querClient}>
             <PrivateComponent>
               <Sidebar/>
             </PrivateComponent>
@@ -33,7 +33,7 @@ function ClientApp({children,user}:{children:ReactNode,user:string}) {
             <PrivateComponent>
               <BottomTabNavigation/>
             </PrivateComponent>
-          {/* </QueryClientProvider> */}
+          </QueryClientProvider>
         </Provider>
    </div>
   )

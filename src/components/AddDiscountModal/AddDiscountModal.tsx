@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import InputComponent from '../InputComponent/InputComponent'
 import style from './AddDiscountModal.module.scss'
 import { useRedux } from '@/redux/useRedux'
@@ -11,7 +11,9 @@ function AddDiscountModal() {
         if(e.target.id==='img') console.log(file.files)
         dispatch(setDiscount({key:e.target.id,value:e.target.value}))
     }
-    
+    useEffect(()=>{
+        console.log('dsa')
+    },[])
   return (
     <div className={style.main} onClick={e=>e.stopPropagation()}>
         <p className='text-xl font-bold'>Add Discount</p>
