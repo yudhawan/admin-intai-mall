@@ -13,10 +13,10 @@ function Sidebar() {
       <div className='w-full h-full flex flex-col '>
         {urlMenu.map(val=><Link href={val.url} key={val.url} className={`font-semibold rounded-sm p-2 hover:bg-red-400 hover:text-white capitalize ${pathname===val.url&&'bg-red-400 text-white'}`}>{val.name}</Link>)}
       </div>
-      <Button onClick={()=>{}} classname='border-none bg-transparent hover:bg-red-400 text-left justify-between flex items-center text-gray-500 group'>
+      {/* <Link href={'/setting-page'} className='border-none bg-transparent text-left justify-between flex items-center font-bold group'>
         Setting
-        <CogIcon className='w-6 h-6 text-gray-500 stroke-2 group-hover:text-white'/>
-      </Button>
+        <CogIcon className='w-6 h-6 text-gray-500 stroke-2 '/>
+      </Link> */}
     </div>
   )
 }

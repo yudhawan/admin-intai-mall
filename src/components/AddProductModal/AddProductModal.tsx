@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { handleValidationForm, numberFormatMoney } from '@/services/services'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRedux } from '@/redux/useRedux'
 import { setAddProductState } from '@/redux/reducers/productsReducer'
 import {  ProductDataInput } from '@/type'

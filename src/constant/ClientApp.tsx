@@ -9,18 +9,14 @@ import ModalWindow from '@/ModalComponents/ModalWindow'
 import BottomTabNavigation from '@/container/BottomTabNavigation/BottomTabNavigation'
 import PrivateComponent from '@/PrivateComponent/PrivateComponent'
 import style from './ClientApp.module.scss'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-// import { useUserState } from '@/storage/userState'
-const querClient = new QueryClient()
 function ClientApp({children,user}:{children:ReactNode,user:string}) {
-  // const {data,setUser} = useUserState()
   const pathname=usePathname()
   const isLoginPage = pathname==='/login'
   const user_stat = JSON.parse(user)
+
   return (
     <div className={style.main+' bg-gray-100'}>
         <Provider store={store}>
-          <QueryClientProvider client={querClient}>
             <PrivateComponent>
               <Sidebar/>
             </PrivateComponent>
@@ -33,7 +29,6 @@ function ClientApp({children,user}:{children:ReactNode,user:string}) {
             <PrivateComponent>
               <BottomTabNavigation/>
             </PrivateComponent>
-          </QueryClientProvider>
         </Provider>
    </div>
   )

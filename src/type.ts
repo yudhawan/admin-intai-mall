@@ -4,9 +4,11 @@ export type ModalContextProp={
     modalId:string
     active:boolean
     isLoading?:boolean
+    token?:string
     handleModalId:(val:string)=>void
     handleActive:(val:boolean)=>void
     handleIsLoading:(val:boolean)=>void
+    handleLogout:(val:string)=>void
 }
 
 export type ModalAppProp={

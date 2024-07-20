@@ -19,7 +19,7 @@ function BottomTabNavigation() {
                 <span className='font-bold text-[10px]'>{val.name}</span>
             </Link>)
         }
-        <Link href={'setting-page'} className={`${style.link} ${pathname==='setting'?style.active:''} border-none !p-0 hover:!bg-transparent`}>
+        <Link href={'setting-page'} className={`${style.link} ${pathname==='setting-page'?style.active:''} border-none !p-0 hover:!bg-transparent`}>
             <CogIcon className='w-fit'/>
             <span className='font-bold text-[10px]'>setting</span>
         </Link>

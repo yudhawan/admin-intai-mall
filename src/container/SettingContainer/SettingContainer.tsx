@@ -1,13 +1,15 @@
 "use client"
 import Button from '@/components/Button/Button'
 import style from './SettingContainer.module.scss'
-import { handleLogout } from '@/app/api/libsServer/serverServices'
-import { useUserState } from '@/storage/userState'
+import { handleLogoutApi } from '@/app/api/libsServer/serverServices'
+import { useContext } from 'react'
+import { ModalContext } from '@/constant/ModalContext'
+import { ModalContextProp } from '@/type'
 function SettingContainer() {
-  const {logoutUser,data} = useUserState()
+  const {token,handleLogout} = useContext(ModalContext) as ModalContextProp
   function logoutHandle() {
-    handleLogout(data?.token || "")
-    logoutUser()
+    handleLogout('imt')
+    handleLogoutApi(token || "")
   }
   return (
     <div className={style.main+' p-4'}>

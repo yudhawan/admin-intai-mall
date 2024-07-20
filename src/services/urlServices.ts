@@ -17,6 +17,14 @@ export const urlMenu = [
         name:'orders',
         url:'/orders'
     },
+    {
+        name:'feedback',
+        url:'/feedback'
+    },
+    {
+        name:'setting',
+        url:'/setting-page'
+    },
 ]
 
 export const BoxMenuUrl=[
