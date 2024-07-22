@@ -54,7 +54,7 @@ model Discount{
   discount_name String
   value Int
   valType String
-  picture String
+  picture String?
   product Products[]
   create_date DateTime @default(now())
 }

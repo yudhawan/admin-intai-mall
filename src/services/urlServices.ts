@@ -7,7 +7,7 @@ export const urlMenu = [
     },
     {
         name:'all products',
-        url:'/products'
+        url:'/products/all-products'
     },
     {
         name:'all users',

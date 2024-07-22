@@ -1,4 +1,4 @@
-import { CategoryProp, DiscountInputType, ProductDataInput, ProductProp } from '@/type'
+import { CategoryProp, DefaultTypeReducer, DiscountInputType, ProductDataInput, ProductProp } from '@/type'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import productsActions from '../actions/productsAction'
 
@@ -16,12 +16,12 @@ export interface ProductsState {
   categories:CategoryProp[]
   cart: object[]
   addProductState:ProductDataInput
-  addDiscountState:DiscountPassPropType
+  addDiscountState:DiscountPassPropType&DefaultTypeReducer
   isLoading:boolean
   error:string | object
 }
 
-const initialState: ProductsState = {
+const initialState: ProductsState&DefaultTypeReducer = {
   products: [],
   cart:[],
   categories:[],
@@ -51,6 +51,7 @@ export const productsSlice = createSlice({
   },
   extraReducers:builder=>{
     productsActions(builder)
+
   }
 })
 

@@ -62,3 +62,8 @@ export type DiscountInputType={
     valType:string
     picture?:string
 }
+
+export type DefaultTypeReducer={
+    isLoading?:boolean
+    error?:string
+}

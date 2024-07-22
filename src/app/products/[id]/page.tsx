@@ -1,5 +1,5 @@
 import ProductsContainer from '@/container/ProductContainer/ProductContainer'
-import { getCategories, getProducts } from '../api/libsServer/serverServices'
+import { getCategories, getProducts } from '../../api/libsServer/serverServices'
 
 
 async function ProductPage() {

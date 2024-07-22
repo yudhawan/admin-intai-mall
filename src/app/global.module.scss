@@ -1,3 +1,9 @@
+$mobile:500px;
+
+$red:#EF4444;
+
+
+
 @mixin flex-row($justify:center,$align:center,$reverse:row,$gap:4px){
     display: flex;
     flex-direction: $reverse;
