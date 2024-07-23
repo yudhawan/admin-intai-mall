@@ -35,8 +35,8 @@ function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:stri
         handleIsLoading(isLoading)
     },[isLoading])
     useEffect(()=>{
-        dispatch(setProducts(JSON.parse(getAllProducts)))
-        dispatch(setCategories(JSON.parse(getAllCategories)))
+        dispatch(setProducts(getAllProducts))
+        dispatch(setCategories(getAllCategories))
     },[])
     useEffect(()=>{
 
