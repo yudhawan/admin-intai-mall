@@ -1,3 +1,15 @@
+@import "../../app/global.module.scss";
 .main{
-    display: flex;
+    @include flex(flex-start,flex-start,column,16px);
+    padding: 16px;
+}
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    th{
+        text-transform: capitalize;
+    }
+    th,td{
+        border: 1px solid gray;
+    }
 }

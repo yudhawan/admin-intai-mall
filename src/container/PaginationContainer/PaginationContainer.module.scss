@@ -1,0 +1,5 @@
+@import "../../app/global.module.scss";
+.main{
+    @include flex(flex-start,flex-start,column,16px);
+    padding: 16px;
+}

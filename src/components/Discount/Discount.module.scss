@@ -1,5 +1,5 @@
 @import "../../app/global.module.scss";
 
 .main{
-    @include flex-row(flex-start,center,row,16px)
+    @include flex-(flex-start,center,row,16px)
 }
