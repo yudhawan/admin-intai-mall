@@ -7,7 +7,7 @@ import { BoxMenuUrl } from '@/services/urlServices'
 import { useRedux } from '@/redux/useRedux'
 function DashboardContainer() {
   const {selector} = useRedux()
-  const {token} = selector(state=> state.user)
+  const {token} = selector(state=> state.admin)
   return (
     <div className={`${style.main} p-8 flex-col gap-10`}>
       <div className={`${style.orderContainer} flex flex-col gap-2`}>

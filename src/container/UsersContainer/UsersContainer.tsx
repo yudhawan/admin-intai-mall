@@ -1,26 +1,38 @@
 'use client'
 import Button from '@/components/Button/Button'
 import style from './UsersContainer.module.scss'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import InputComponent from '@/components/InputComponent/InputComponent'
 import PaginationContainer from '../PaginationContainer/PaginationContainer'
+import { getUserFake, UserFakeType } from '@/faker'
+import { useRedux } from '@/redux/useRedux'
+import { setUsers } from '@/redux/reducers/usersReducers'
 function UsersContainer() {
+  const {dispatch,selector} = useRedux("")
+  
   const [getChecked,setChecked]=useState<string[]>([])
-  function handleCheck(e:ChangeEvent<HTMLInputElement>) {
-    const checked = e.target 
-    // if(checked) {
-    //   // @ts-ignore
-    //   e.target?.checked=false
-    //   const newData = getChecked?.filter(val=>val!==e.target?.id)
-    //   setChecked(newData)
-    // }
-    // else {
-    //   // @ts-ignore
-    //   e.target?.checked=true
-    //   setChecked(prev=>([...prev, e.target?.id]))
+  const [search,setSearch] = useState<string>('')
 
-    // }
+  function handleCheck(e:ChangeEvent<HTMLInputElement>) {
+    if(e.target instanceof HTMLInputElement) {
+      if(e.target.checked){
+        e.target.checked=false
+        const newData = getChecked?.filter(val=>val!==e.target?.id)
+        setChecked(newData)
+
+      }
+      else {
+        e.target.checked=true
+        setChecked(prev=>([...prev, e.target?.id]))
+  
+      }
+    }
   }
+  useEffect(()=>{
+    // console.log('dasdasdsadsadsa',!selector?.users.length)
+    // @ts-ignore
+    // if(!selector?.users.length) dispatch(setUsers(getUserFake()))
+  },[])
   return (
     <div className={style.main}>
       <div className='w-full flex gap-4'>
@@ -33,22 +45,30 @@ function UsersContainer() {
             <th>name</th>
             <th>facebook</th>
             <th>address</th>
+            <th>jenis</th>
             <th>status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td align='center'>
-              <input type='checkbox' onChange={handleCheck} id={""} />
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          {
+            !!getUserFake()?.length&& getUserFake().map(val=>{
+              return(
+                <tr key={val.id}>
+                  <td align='center'>
+                    <input type='checkbox' onChange={handleCheck} id={val?.id} onClick={e=>{}} />
+                  </td>
+                  <td>{val.name}</td>
+                  <td>@{val.sosmed}</td>
+                  <td>{val.address}</td>
+                  <td>{val.jenis}</td>
+                  <td>{val.status}</td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
-      <PaginationContainer/>
+      <PaginationContainer amount={30} page={1} totalData={123} />
     </div>
   )
 }

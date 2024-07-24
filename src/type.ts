@@ -67,3 +67,12 @@ export type DefaultTypeReducer={
     isLoading?:boolean
     error?:string
 }
+
+export interface UserType{
+    id:string
+    name:string
+    sosmed:string
+    address:string
+    jenis:string
+    status:string
+}
