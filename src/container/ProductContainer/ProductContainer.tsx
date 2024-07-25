@@ -5,20 +5,21 @@ import Button from '../../components/Button/Button'
 import { setProducts,setCategories } from '@/redux/reducers/productsReducer'
 import { useRedux } from '@/redux/useRedux'
 import { ModalContext } from '@/constant/ModalContext'
-import { CategoryProp, ModalContextProp, ProductProp } from '@/type'
+import { CategoryProp, ModalContextProp, ProductProp, ProductsStateType } from '@/type'
 import { MagnifyingGlassIcon, PlusIcon} from '@heroicons/react/24/outline'
 import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import Product from '@/components/Product/Product'
 import { deleteProduct } from '@/redux/actions/productsAction'
 import style from './ProductContainer.module.scss'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import { AppDispatch } from '@/redux/store'
 
 function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:string,getAllCategories:string}) {
     const {id}=useParams()
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
-    const {dispatch,selector}= useRedux()
-    const {isLoading,products,categories} = selector(state=>state.products)
+    const {dispatch,selector}:{dispatch:AppDispatch, selector:ProductsStateType}= useRedux("products")
+    const {isLoading,products,categories} = selector 
     const [type,setType]=useState<string>('products')
     const [category,setCategory] = useState<string>('')
     

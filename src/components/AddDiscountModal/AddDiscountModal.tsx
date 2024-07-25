@@ -3,9 +3,11 @@ import InputComponent from '../InputComponent/InputComponent'
 import style from './AddDiscountModal.module.scss'
 import { useRedux } from '@/redux/useRedux'
 import { setDiscount } from '@/redux/reducers/productsReducer'
+import { AppDispatch } from '@/redux/store'
+import { ProductProp, ProductsStateType } from '@/type'
 function AddDiscountModal() {
-    const {selector,dispatch}=useRedux()
-    const {addDiscountState} = selector(state=>state.products)
+    const {selector,dispatch}:{dispatch:AppDispatch,selector:ProductsStateType}=useRedux("products")
+    const {addDiscountState} = selector
     const handleInput=(e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>)=> {
         const file = e.target as HTMLInputElement
         if(e.target.id==='img') console.log(file.files)

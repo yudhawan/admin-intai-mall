@@ -29,9 +29,7 @@ function UsersContainer() {
     }
   }
   useEffect(()=>{
-    // console.log('dasdasdsadsadsa',!selector?.users.length)
-    // @ts-ignore
-    // if(!selector?.users.length) dispatch(setUsers(getUserFake()))
+    if(!selector?.["users"]) dispatch(setUsers(getUserFake()))
   },[])
   return (
     <div className={style.main}>

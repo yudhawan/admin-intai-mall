@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import { ModalContext } from './ModalContext'
 import { deleteCookie, setCookie } from 'cookies-next'
+import { AdminStateType } from '@/type'
 type modalProviderProp={
     active:boolean
     modalId:string
@@ -12,10 +13,10 @@ function ModalProvider({children,user}:{children:ReactNode,user:any}) {
         active:false,
         isLoading:false
     })
-    const [getToken,setToken] = useState<string>("")
+    const [getToken,setToken] = useState<AdminStateType | null>()
     const handleLogout = (key:string)=> {
         deleteCookie(key)
-        setToken('')
+        setToken(null)
     }
     const handleModalId = (val:string)=> setData(prev=>({...prev,modalId:val}))
     const handleActive = (val:boolean)=> setData(prev=>({...prev,active:val}))
@@ -25,7 +26,7 @@ function ModalProvider({children,user}:{children:ReactNode,user:any}) {
     }
     useEffect(()=>{
         if(user?.token) {
-            setToken(user?.token)
+            setToken(user)
             setCookie("imt",user?.token)
         }
     },[user])
@@ -34,7 +35,7 @@ function ModalProvider({children,user}:{children:ReactNode,user:any}) {
         active:data.active,
         modalId:data.modalId,
         isLoading:data.isLoading,
-        token:getToken,
+        token:getToken?.token,
         handleActive,
         handleModalId,
         handleIsLoading,

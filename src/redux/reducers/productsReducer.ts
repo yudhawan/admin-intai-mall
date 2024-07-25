@@ -1,27 +1,9 @@
-import { CategoryProp, DefaultTypeReducer, DiscountInputType, ProductDataInput, ProductProp } from '@/type'
+import { CategoryProp, DefaultTypeReducer, DiscountInputType, ProductDataInput, ProductProp, ProductsStateType, SetDiscountPassPropType } from '@/type'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import productsActions from '../actions/productsAction'
 
-interface DiscountPassPropType{
-  [key:string]:string|number
-}
-interface SetDiscountPassPropType{
-  key:string
-  value:string|number
-}
 
-
-export interface ProductsState {
-  products: ProductProp[]
-  categories:CategoryProp[]
-  cart: object[]
-  addProductState:ProductDataInput
-  addDiscountState:DiscountPassPropType&DefaultTypeReducer
-  isLoading:boolean
-  error:string | object
-}
-
-const initialState: ProductsState&DefaultTypeReducer = {
+const initialState: ProductsStateType&DefaultTypeReducer = {
   products: [],
   cart:[],
   categories:[],

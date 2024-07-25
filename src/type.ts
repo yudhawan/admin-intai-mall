@@ -51,7 +51,8 @@ export type CategoryProp={
     name:string
     products?:ProductProp[]
 }
-export type UserStateType={
+export type AdminStateType={
+    id:string
     username:string
     token?:string
 }
@@ -75,4 +76,24 @@ export interface UserType{
     address:string
     jenis:string
     status:string
+}
+
+
+export interface DiscountPassPropType{
+    [key:string]:string|number
+}
+export interface SetDiscountPassPropType{
+    key:string
+    value:string|number
+}
+
+
+export interface ProductsStateType {
+    products: ProductProp[]
+    categories:CategoryProp[]
+    cart: object[]
+    addProductState:ProductDataInput
+    addDiscountState:DiscountPassPropType&DefaultTypeReducer
+    isLoading:boolean
+    error:string | object
 }
