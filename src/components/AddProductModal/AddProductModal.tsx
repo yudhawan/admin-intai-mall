@@ -9,8 +9,8 @@ import InputComponent from '../InputComponent/InputComponent'
 import style from './AddProductModal.module.scss'
 import { addProduct } from '@/redux/actions/productsAction'
 function AddProductModal() {
-    const {dispatch,selector}= useRedux()
-    const {addProductState} = selector(state=>state.products)
+    const {dispatch,selector}= useRedux("products")
+    const {addProductState} = selector
     const [image,setImage]=useState<any>()
     const [preview,setPreview]=useState<string | undefined>('')
     const [validation,setValidation] = useState<string[]>([])

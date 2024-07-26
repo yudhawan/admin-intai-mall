@@ -6,7 +6,7 @@ import { setDiscount } from '@/redux/reducers/productsReducer'
 import { AppDispatch } from '@/redux/store'
 import { ProductProp, ProductsStateType } from '@/type'
 function AddDiscountModal() {
-    const {selector,dispatch}:{dispatch:AppDispatch,selector:ProductsStateType}=useRedux("products")
+    const {selector,dispatch}=useRedux("products")
     const {addDiscountState} = selector
     const handleInput=(e:ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>)=> {
         const file = e.target as HTMLInputElement
