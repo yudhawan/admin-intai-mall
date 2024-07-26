@@ -1,7 +1,6 @@
-import { ImagesBanner, UserType } from "@/type";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import adminAction from "../actions/adminAction";
-import { setCookie } from "cookies-next";
+import { UserType } from "@/type";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 
 export type AdminState = {
     user:UserType[],

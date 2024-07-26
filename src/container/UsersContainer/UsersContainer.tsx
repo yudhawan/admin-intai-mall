@@ -8,7 +8,7 @@ import { getUserFake, UserFakeType } from '@/faker'
 import { useRedux } from '@/redux/useRedux'
 import { setUsers } from '@/redux/reducers/usersReducers'
 function UsersContainer() {
-  const {dispatch,selector} = useRedux("")
+  const {dispatch,selector} = useRedux("users")
   
   const [getChecked,setChecked]=useState<string[]>([])
   const [search,setSearch] = useState<string>('')
@@ -29,7 +29,7 @@ function UsersContainer() {
     }
   }
   useEffect(()=>{
-    if(!selector?.["users"]) dispatch(setUsers(getUserFake()))
+    if(!selector?.["user"]) dispatch(setUsers(getUserFake()))
   },[])
   return (
     <div className={style.main}>

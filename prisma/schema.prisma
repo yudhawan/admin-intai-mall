@@ -30,6 +30,7 @@ model Products {
 model Category {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   name        String
+  icon        String? 
   products    Products[]
   create_data DateTime   @default(now())
 }

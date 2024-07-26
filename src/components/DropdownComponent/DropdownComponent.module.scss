@@ -1,0 +1,10 @@
+@import "../../app/global.module.scss";
+
+.main{
+    @include flex();
+    position: relative;
+}
+.list{
+    @include flex(flex-start,flex-start,column,12px);
+
+}

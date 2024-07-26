@@ -46,9 +46,7 @@ function AddProductModal() {
                     setImage(file)
                 }
             }}  />
-            <select>
-
-            </select>
+            
             <Button onClick={handleSubmit}>submit</Button>
         </form>
         <div className='w-72 h-auto p-2 flex flex-col border border-gray-400 rounded-lg'>

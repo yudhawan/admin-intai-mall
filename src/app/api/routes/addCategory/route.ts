@@ -7,10 +7,11 @@ export const POST =async (req:NextRequest)=>{
     try {
         let category = {}
         const data = await req.json()
-        const img = data?.image?await cloud.uploader.upload(data?.image,{folder:'categories'}):{url:''}
-        if(img.url && data?.image){
-            data.category.image=img.url
-            category = await prisma?.category.create({data:data.category})
+        const img = data?.icon?await cloud.uploader.upload(data?.icon,{folder:'categories'}):{url:''}
+        if(img.url && data?.icon){
+            data.icon=img.url
+            console.log(data)
+            category = await prisma?.category.create({data:data})
         }
         return res.json({},{status:202})
     } catch (error) {

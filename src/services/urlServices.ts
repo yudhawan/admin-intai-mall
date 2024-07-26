@@ -31,7 +31,7 @@ export const BoxMenuUrl=[
     {
         icon:RectangleStackIcon,
         name:'products',
-        link:'/products'
+        link:'/products/all-products'
     },
     {
         icon:BuildingStorefrontIcon,

@@ -6,7 +6,7 @@ export const DELETE = async (req:NextRequest)=>{
     try {
         const data = await req.json()
         const imgId = data?.img.split('/')
-        const imgDirId=imgId[imgId.length-2]
+        const imgDirId='products'
         const imgPubId = imgId[imgId.length-1].split('.')[0]
         const product = await prisma.products.delete({where:{
             id:data.id

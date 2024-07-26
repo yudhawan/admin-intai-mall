@@ -4,15 +4,22 @@ import Image from 'next/image'
 import InputComponent from '../InputComponent/InputComponent'
 import Button from '../Button/Button'
 import { handleValidationForm } from '@/services/services'
+import { useRedux } from '@/redux/useRedux'
+import { addCategories } from '@/redux/actions/productsAction'
 function AddCategoryModal() {
+    const {dispatch} = useRedux("products")
     const imgRef=useRef<HTMLInputElement>(null)
-    const [icon,setIcon] = useState<FileList | null>(null)
+    const [icon,setIcon] = useState<any>(null)
     const [category,setCategory] = useState<string>('')
     const [preview,setPreview] = useState<string>('')
     const [validation,setValidation] = useState<string[]>([])
     const handleSubmit = ()=>{
       if(!category) return handleValidationForm({category},setValidation)
-
+        let reader = new FileReader()
+        reader.readAsDataURL(icon[0])
+        reader.onload=async function () {
+          dispatch(addCategories({icon:reader.result || "",name:category}))
+        }
     }
     const onChange = (e:ChangeEvent<HTMLInputElement>,id:string)=>{
       if(e.target.value){
