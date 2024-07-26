@@ -2,7 +2,7 @@
 
 .main{
     padding: 8px;
-    @include flex-(space-between,flex-start,row,16px);
+    @include flex(space-between,flex-start,row,16px);
     @media(max-width:1024px){
         @include flex-column(flex-start,flex-start,column-reverse,8px)
     }
