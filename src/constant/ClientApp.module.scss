@@ -3,7 +3,6 @@
     height: 100vh;
 }
 .container{
-    height: 100%;
-    padding-bottom: 88px;
-    
+    height: unset !important;
+    // padding-bottom: 88px;
 }

@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import style from './AddCategoryModal.module.scss'
 import Image from 'next/image'
 import InputComponent from '../InputComponent/InputComponent'
@@ -6,20 +6,26 @@ import Button from '../Button/Button'
 import { handleValidationForm } from '@/services/services'
 import { useRedux } from '@/redux/useRedux'
 import { addCategories } from '@/redux/actions/productsAction'
+import { mutateAddCategory } from '@/query/mutation'
+import { useQueryClient } from '@tanstack/react-query'
 function AddCategoryModal() {
+    const queryClient = useQueryClient()
     const {dispatch} = useRedux("products")
     const imgRef=useRef<HTMLInputElement>(null)
     const [icon,setIcon] = useState<any>(null)
     const [category,setCategory] = useState<string>('')
     const [preview,setPreview] = useState<string>('')
     const [validation,setValidation] = useState<string[]>([])
-    const handleSubmit = ()=>{
+    const handleSubmit = (e:React.MouseEvent)=>{
+      e.preventDefault()
       if(!category) return handleValidationForm({category},setValidation)
-        let reader = new FileReader()
-        reader.readAsDataURL(icon[0])
-        reader.onload=async function () {
-          dispatch(addCategories({icon:reader.result || "",name:category}))
-        }
+      let reader = new FileReader()
+      reader.readAsDataURL(icon[0])
+      reader.onload=async function () {
+      //  const {data,isSuccess}= mutateAddCategory({icon:reader.result || "",name:category})
+      //  if(isSuccess) queryClient.invalidateQueries({queryKey:['getCategories']})
+        dispatch(addCategories({icon:reader.result || "",name:category}))
+      }
     }
     const onChange = (e:ChangeEvent<HTMLInputElement>,id:string)=>{
       if(e.target.value){

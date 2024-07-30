@@ -14,34 +14,35 @@ import style from './ProductContainer.module.scss'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { AppDispatch } from '@/redux/store'
+import {  getDataCategories, getDataProducts } from '@/query/productsQuery'
+import Category from '@/components/Category/Category'
+import CategoriesContainer from '../CategoriesContainer/CategoriesContainer'
 
-function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:string,getAllCategories:string}) {
+function ProductContainer() {
     const {id}=useParams()
+    const {data:getAllProducts,isLoading,isError} = getDataProducts()
+    const {data:getAllCategories} = getDataCategories()
     const {handleIsLoading,handleModalId} = useContext(ModalContext) as ModalContextProp
     const {dispatch,selector}:{dispatch:AppDispatch, selector:ProductsStateType}= useRedux("products")
-    const {isLoading,products,categories} = selector 
+    const {products,categories,isLoading:productLoading} = selector 
     const [type,setType]=useState<string>('products')
     const [category,setCategory] = useState<string>('')
     
     function handelAddCategory(a:string) {
         console.log(a)
     }
-    function kontol(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        
-    }
+    
     function handleDelete({id,img}:{id:string,img:string|undefined}) {
         dispatch(deleteProduct({id,img}))
     }
     useEffect(()=>{
-        handleIsLoading(isLoading)
-    },[isLoading])
+        handleIsLoading(isLoading || productLoading)
+    },[isLoading,productLoading])
     useEffect(()=>{
         dispatch(setProducts(getAllProducts))
         dispatch(setCategories(getAllCategories))
-    },[])
-    useEffect(()=>{
-
-    },[id])
+    },[getAllProducts,getAllCategories])
+    
   return (
     <div className={`${style.main} w-full flex flex-col gap-4 md:gap-10 p-4 bg-gray-100`}>
         
@@ -77,17 +78,12 @@ function ProductContainer({getAllProducts,getAllCategories}:{getAllProducts:stri
                 <Link href={'all-categories'} className={`${style.subLink} ${id==='all-categories'?style.active:'decoration-transparent'}`}>All Categories</Link>
                 <Link href={'all-discount'} className={`${style.subLink} ${id==='all-discount'?style.active:'decoration-transparent'}`}>All Discount</Link>
             </div>
-            {id==='all-products'&&<div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
+            {id==='all-products'&&<div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products?.length&&' items-center'}`}>
                 {
-                    products.length?products.map(val=> <Product key={val.id} id={val.id} name={val.name} price={val.price} stock={val.stock} image={val.image} deleteFn={()=>handleDelete({id:val.id,img:val.image})} />):<EmptyComponent/>
+                    products?.length?products.map(val=> <Product key={val.id} id={val.id} name={val.name} price={val.price} stock={val.stock} image={val.image} deleteFn={()=>handleDelete({id:val.id,img:val.image})} />):<EmptyComponent/>
                 }
             </div>}
-            {id==='all-categories'&&<div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
-                <EmptyComponent/>
-                {/* {
-                    categories.length?products.map(val=> <Product key={val.id} id={val.id} name={val.name} price={val.price} stock={val.stock} image={val.image} deleteFn={()=>handleDelete({id:val.id,img:val.image})} />):<EmptyComponent/>
-                } */}
-            </div>}
+            {id==='all-categories'&&<CategoriesContainer data={categories} />}
             {id==='all-discount'&&<div className={`w-full h-full flex flex-wrap gap-4 justify-center ${!products.length&&' items-center'}`}>
                 <EmptyComponent/>
                 {/* {

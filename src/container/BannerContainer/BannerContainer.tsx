@@ -11,7 +11,7 @@ import { ImagesBanner } from '@/type'
 
 
 function BannerContainer() {
-    const {dispatch}=useRedux()
+    const {dispatch}=useRedux("admin")
     const [images,setImages] = useState<ImagesBanner[]>([])
     const [preview,setPreview] = useState<string[]>([])
     const [index,setIndex] = useState<number>(0)

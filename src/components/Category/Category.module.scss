@@ -1,3 +1,6 @@
+@import "../../app/global.module.scss";
 .main{
-    display: flex;
+    @include flex(flex-start,center,row,4px);
+    border-radius: 10px;
+    padding:8px 4px;
 }

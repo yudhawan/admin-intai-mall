@@ -64,9 +64,8 @@ const productsActions=(builder:ActionReducerMapBuilder<ProductsStateType>)=>{
     })
     builder.addCase(addCategories.fulfilled,(state,action)=>{
       state.isLoading=false
-      
-      const categoriesNew = state.categories?.filter(val=>val.id!==action.payload?.id)
-      state.categories= categoriesNew
+      const categoriesNew = state.categories?state.categories:[]
+      state.categories= [...categoriesNew,action.payload]
     })
 }
 export default productsActions

@@ -1,5 +1,5 @@
-import { CategoryProp, DefaultTypeReducer, DiscountInputType, ProductDataInput, ProductProp, ProductsStateType, SetDiscountPassPropType } from '@/type'
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { DefaultTypeReducer, ProductsStateType, SetDiscountPassPropType } from '@/type'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import productsActions from '../actions/productsAction'
 
 

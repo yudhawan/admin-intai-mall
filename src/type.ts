@@ -49,6 +49,7 @@ export type ProductDataInput={
 export type CategoryProp={
     id:string
     name:string
+    icon?:string
     products?:ProductProp[]
 }
 export type AdminStateType={

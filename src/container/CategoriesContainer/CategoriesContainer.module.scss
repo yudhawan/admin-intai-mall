@@ -1,0 +1,5 @@
+@import "../../app/global.module.scss";
+
+.main{
+    @include flex(flex-start,flex-start,row,8px)
+}

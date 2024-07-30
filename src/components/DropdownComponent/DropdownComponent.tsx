@@ -24,7 +24,7 @@ function DropdownComponent({data,buttonText="Pilih",withSearch,dataType,onSelect
         </Button>
         {withSearch&&<InputComponent type='text' value={getSearch} onChange={e=>setSearch(e.target.value)} />}
         <div className={style.list}>    
-            {data.filter(val=> val.value===getSearch).map(val=>{
+            {data?.filter(val=> val.value===getSearch).map(val=>{
                 return(
                     <span className='cursor-pointer hover:bg-red-200 text-sm' onClick={()=>handleSelected(val)}>{val.value}</span>
                 )
