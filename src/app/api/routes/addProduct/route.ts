@@ -11,6 +11,7 @@ export const POST =async (req:NextRequest)=>{
             data.products.image=img.url
             product = await prisma?.products.create({data:data.products})
         }
+        console.log('iki produk : ',product)
         return res.json(product,{status:202})
     } catch (error) {
         console.log(error)

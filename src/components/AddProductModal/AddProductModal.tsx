@@ -1,20 +1,22 @@
+'use client'
 import Image from 'next/image'
 import { handleValidationForm, numberFormatMoney } from '@/services/services'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRedux } from '@/redux/useRedux'
 import { setAddProductState } from '@/redux/reducers/productsReducer'
 import {  ProductDataInput } from '@/type'
 import Button from '../Button/Button'
 import InputComponent from '../InputComponent/InputComponent'
 import style from './AddProductModal.module.scss'
-import { addProduct } from '@/redux/actions/productsAction'
+import { mutateAddProduct } from '@/query/mutation'
 function AddProductModal() {
+    
     const {dispatch,selector}= useRedux("products")
     const {addProductState} = selector
     const [image,setImage]=useState<any>()
     const [preview,setPreview]=useState<string | undefined>('')
     const [validation,setValidation] = useState<string[]>([])
-
+    const {mutate:addProductMutate} = mutateAddProduct()
     function handleInput(value:string|FileList,key:string) {
         if(value) setValidation(validation.filter(val=>val!==key))
         if(!value) setValidation(prev=>([...prev,value]))
@@ -26,7 +28,12 @@ function AddProductModal() {
         let reader = new FileReader()
         reader.readAsDataURL(image[0])
         reader.onload=async function () {
-            dispatch(addProduct({products:addProductState,image:reader.result??''}))
+            addProductMutate({
+                products: addProductState,
+                image: reader.result ?? '',
+                validate:['getProducts']
+            })
+            // dispatch(addProduct({products:addProductState,image:reader.result??''}))
         }
         setImage('')
         setPreview('')
