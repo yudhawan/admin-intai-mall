@@ -91,6 +91,7 @@ export async function addProduct(data:{
     products: ProductDataInput;
     image: string | ArrayBuffer;
 }) {
+    console.log(data)
     try {
         const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/addProduct',{
             method:'post',

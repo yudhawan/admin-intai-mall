@@ -1,0 +1,11 @@
+@import "../../app/global.module.scss";
+.main{
+    @include flex(flex-start,flex-start,row,80px);
+    height: 100dvh;
+}
+.previewContainer{
+    display: flex;
+    @media (max-width:600px){
+        display: none;
+    }
+}

@@ -53,12 +53,10 @@ function ProductContainer() {
                     <InputComponent onChange={e=>{}} type='text' placeholder='search' classname='border-none rounded-none p-0 w-full' />
                     <MagnifyingGlassIcon className='w-5 h-5 text-gray-500'/>
                 </div>
-                <Button onClick={(e)=>{
-                    handleModalId('addProductModal')
-                }} classname='group flex items-center hover:bg-green-500 hover:border-green-500'>
+                <Link href={'addProduct'}  className='group flex items-center hover:bg-green-500 hover:border-green-500 p-2 border border-gray-400 bg-white rounded-md hover:text-white'>
                     <PlusIcon className='group-hover:text-white w-5 h-5 stroke-2' />
                     Product
-                </Button>
+                </Link>
                 <Button onClick={()=>{
                     handleModalId('addCategoryModal')
                 }} classname='group flex items-center hover:bg-orange-500 hover:border-orange-500'>

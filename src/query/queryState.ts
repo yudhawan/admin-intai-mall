@@ -1,4 +1,4 @@
-import { MutationFunction, MutationKey, QueryFunction, QueryKey, UseMutateFunction, useMutation, UseMutationResult, useQuery, useQueryClient } from "@tanstack/react-query"
+import { MutationFunction, MutationKey, QueryFunction, QueryKey, UseMutateFunction, useMutation, UseMutationOptions, UseMutationResult, useQuery, useQueryClient } from "@tanstack/react-query"
 
 export function createQueryStorage<T>(state:T,key:unknown[],qfn:QueryFunction){
     return ()=>{
@@ -23,4 +23,17 @@ export function createMutation({mutatefn,mutatekey,validate}:{mutatefn:UseMutate
         
     })
     return {...mutate as UseMutationResult}
+}
+
+export function useMutationFunction(key:QueryKey,funcAPi:Promise<any>,options?:Partial<UseMutationOptions<unknown,unknown>>):UseMutationResult<unknown,unknown,void,unknown>{
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn:async()=> funcAPi,
+        mutationKey:key,
+        onSuccess(data, variables:any, context) {
+            queryClient.invalidateQueries({queryKey: variables?.validate})
+            if(options?.onSuccess) options.onSuccess(data,variables,context)
+        },
+        ...options
+    })
 }

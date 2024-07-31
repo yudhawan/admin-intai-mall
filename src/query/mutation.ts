@@ -1,6 +1,6 @@
 import { addCategory, addProduct } from "@/app/api/libsServer/serverServices"
 import { createMutation } from "./queryState"
-import { QueryKey, useMutation, UseMutationOptions, UseMutationResult, useQueryClient } from "@tanstack/react-query"
+import { MutationKey, QueryClient, QueryKey, useMutation, UseMutationOptions, UseMutationResult, useQueryClient } from "@tanstack/react-query"
 import { ProductDataInput } from "@/type";
 
 interface AddProductQueryType{
@@ -19,13 +19,13 @@ export function mutateAddCategory(data:{
       })
     return mutate
 }
-export function mutateAddProduct(props?:Partial<UseMutationOptions<unknown,unknown,AddProductQueryType>>):UseMutationResult<unknown,unknown,AddProductQueryType>{
+export function mutateAddProduct(fnmutate:any,mutationKey:string[],validation?:string[],props?:Partial<UseMutationOptions<unknown,unknown,void>>):UseMutationResult<unknown,unknown,void>{
     const queryClient = useQueryClient();
-    return useMutation<unknown, unknown, AddProductQueryType>({
-        mutationFn: async(data:AddProductQueryType)=>addProduct(data),
-        mutationKey:["addProduct"],
+    return useMutation<unknown, unknown, void>({
+        mutationFn: async(data:any)=>fnmutate(data),
+        mutationKey:mutationKey,
         onSuccess:(data, variables, context) =>{
-            queryClient.invalidateQueries({ queryKey: variables.validate });
+            queryClient.invalidateQueries({ queryKey: mutationKey });
             if (props?.onSuccess) {
                 props.onSuccess(data, variables, context);
             }
