@@ -3,7 +3,7 @@ import EmptyComponent from '@/components/EmptyComponent/EmptyComponent'
 import { CategoryProp } from '@/type'
 import style from './CategoriesContainer.module.scss'
 
-function CategoriesContainer({data}:{data:CategoryProp[]}) {
+function CategoriesContainer({data}:{data:CategoryProp[] |[]}) {
   return (
     <div className={style.main}>
         {

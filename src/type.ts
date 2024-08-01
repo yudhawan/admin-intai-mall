@@ -59,9 +59,10 @@ export type AdminStateType={
 }
 
 export type DiscountInputType={
+    id?:string
     discount_name: string
     value:number
-    valType:string
+    valType:'%' | '$'
     picture?:string
 }
 
@@ -93,8 +94,9 @@ export interface ProductsStateType {
     products: ProductProp[]
     categories:CategoryProp[]
     cart: object[]
+    discounts:DiscountInputType[]
     addProductState:ProductDataInput
-    addDiscountState:DiscountPassPropType&DefaultTypeReducer
+    addDiscountState:DiscountInputType
     isLoading:boolean
     error:string | object
 }

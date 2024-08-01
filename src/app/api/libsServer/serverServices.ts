@@ -3,7 +3,7 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { res } from "./argApi"
-import { CategoryProp, ProductDataInput } from "@/type"
+import { CategoryProp, DiscountInputType, ProductDataInput } from "@/type"
 export const getProducts=async()=>{
     try {
         const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/getProducts',{
@@ -24,6 +24,18 @@ export const getCategories=async()=>{
     try {
         
         const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/getCategories',{
+            method:'get',
+        })
+        const result = await response.json()
+        return result
+    } catch (error) {
+        return error
+    }
+}
+export const getDiscountsApi=async()=>{
+    try {
+        
+        const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/getDiscounts',{
             method:'get',
         })
         const result = await response.json()
@@ -87,11 +99,22 @@ export async function addCategory(data:{icon:string |ArrayBuffer| null, name:str
         return {msg:error,status:405}
     }
 }
+export async function addDiscountAPI(data:DiscountInputType) {
+    try {
+        const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/addDiscount',{
+            method:'post',
+            body:JSON.stringify(data)
+          })
+        const result = await response.json()
+        return result
+    } catch (error) {
+        return {msg:error,status:405}
+    }
+}
 export async function addProduct(data:{
     products: ProductDataInput;
     image: string | ArrayBuffer;
 }) {
-    console.log(data)
     try {
         const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL+'api/routes/addProduct',{
             method:'post',

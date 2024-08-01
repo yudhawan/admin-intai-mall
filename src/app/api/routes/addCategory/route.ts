@@ -10,7 +10,6 @@ export const POST =async (req:NextRequest)=>{
         const img = data?.icon?await cloud.uploader.upload(data?.icon,{folder:'categories'}):{url:''}
         if(img.url && data?.icon){
             data.icon=img.url
-            console.log(data)
             category = await prisma?.category.create({data:data})
         }
         return res.json({},{status:202})

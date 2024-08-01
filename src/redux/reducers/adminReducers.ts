@@ -1,6 +1,5 @@
 import { ImagesBanner } from "@/type";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import adminAction from "../actions/adminAction";
 import { setCookie } from "cookies-next";
 
 export type AdminState = {
@@ -39,9 +38,6 @@ export const adminSlice = createSlice({
             state.token=actions.payload
         },
     },
-    extraReducers:builder=>{
-        adminAction(builder)
-    }
 })
 
 export const {setCookieToken} = adminSlice.actions
