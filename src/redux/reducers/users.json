@@ -1,0 +1,242 @@
+[
+    {
+        "id": "af5d57c3c1681f82b22c9e85",
+        "name": "Mr. Dexter Mueller",
+        "sosmed": "Al",
+        "address": "Apt. 987",
+        "jenis": "cow",
+        "status": "phooey"
+    },
+    {
+        "id": "be8c550bc4ff36eba4ed4cd6",
+        "name": "Elmer Murazik",
+        "sosmed": "Garnet",
+        "address": "Suite 866",
+        "jenis": "dog",
+        "status": "brr"
+    },
+    {
+        "id": "462b50caad1ded4bd1812b1e",
+        "name": "Marianne Wolff",
+        "sosmed": "Gaston",
+        "address": "Suite 296",
+        "jenis": "bear",
+        "status": "woot"
+    },
+    {
+        "id": "e965aa4c9091b55dfbae4ffd",
+        "name": "Rebecca Lakin",
+        "sosmed": "Trace",
+        "address": "Suite 981",
+        "jenis": "cetacean",
+        "status": "yowza"
+    },
+    {
+        "id": "d9a2a9007fb86a65b3f125e7",
+        "name": "Malcolm Lynch",
+        "sosmed": "Melisa",
+        "address": "Apt. 648",
+        "jenis": "dog",
+        "status": "uh-huh"
+    },
+    {
+        "id": "25a4ba7f6a4bbdcbdfcdc9ac",
+        "name": "Pedro Prosacco",
+        "sosmed": "Bobby",
+        "address": "Apt. 857",
+        "jenis": "insect",
+        "status": "boo"
+    },
+    {
+        "id": "9bdb05ab4a6c1b2c4d12cc26",
+        "name": "Jacquelyn Gulgowski",
+        "sosmed": "Angela",
+        "address": "Suite 384",
+        "jenis": "cat",
+        "status": "aw"
+    },
+    {
+        "id": "1ec7d9ba7791288c88f10e19",
+        "name": "Debbie Stracke",
+        "sosmed": "Kayley",
+        "address": "Apt. 144",
+        "jenis": "cetacean",
+        "status": "yippee"
+    },
+    {
+        "id": "f6e1bdbcb6bca033ce0aa373",
+        "name": "Candice Schinner-Stracke",
+        "sosmed": "Levi",
+        "address": "Apt. 311",
+        "jenis": "fish",
+        "status": "fooey"
+    },
+    {
+        "id": "fcd5af37595b0f52d7b0a3ae",
+        "name": "Ken Abernathy",
+        "sosmed": "Porter",
+        "address": "Suite 774",
+        "jenis": "insect",
+        "status": "oof"
+    },
+    {
+        "id": "b46afa2fd6c06edd44cdddee",
+        "name": "Johnny Johnson",
+        "sosmed": "Katlyn",
+        "address": "Suite 180",
+        "jenis": "lion",
+        "status": "ah"
+    },
+    {
+        "id": "260da7cd66f7ddf8bfaad96f",
+        "name": "Darlene Batz",
+        "sosmed": "Cordie",
+        "address": "Apt. 125",
+        "jenis": "cetacean",
+        "status": "meh"
+    },
+    {
+        "id": "58ff7b6da6eebf87d4b440d1",
+        "name": "Sergio Emmerich",
+        "sosmed": "Owen",
+        "address": "Apt. 334",
+        "jenis": "insect",
+        "status": "aha"
+    },
+    {
+        "id": "f7b4ec1b6a6f7f6f1a3c13b0",
+        "name": "Francis Volkman",
+        "sosmed": "Name",
+        "address": "Apt. 543",
+        "jenis": "bear",
+        "status": "ha"
+    },
+    {
+        "id": "bd2dad65a1f5ffa2cc948ce8",
+        "name": "Gerard Davis",
+        "sosmed": "Sibyl",
+        "address": "Suite 487",
+        "jenis": "snake",
+        "status": "pfft"
+    },
+    {
+        "id": "cb2eee03fe1f6d6a693b6ad1",
+        "name": "Dr. Nathaniel Frami",
+        "sosmed": "Dedric",
+        "address": "Apt. 468",
+        "jenis": "crocodilia",
+        "status": "fooey"
+    },
+    {
+        "id": "1ca7abe81fdd18c388bfbc8c",
+        "name": "Elaine Upton",
+        "sosmed": "Royal",
+        "address": "Apt. 620",
+        "jenis": "horse",
+        "status": "uh-huh"
+    },
+    {
+        "id": "c22cb3296c715e5facaaf42f",
+        "name": "Noel Ortiz",
+        "sosmed": "Rosalinda",
+        "address": "Apt. 459",
+        "jenis": "cow",
+        "status": "phooey"
+    },
+    {
+        "id": "de8c9e691cbdf82359340fcd",
+        "name": "Nora Berge",
+        "sosmed": "Rylee",
+        "address": "Apt. 746",
+        "jenis": "lion",
+        "status": "hm"
+    },
+    {
+        "id": "bc381ee9ad6dae92bd349cb9",
+        "name": "Nathan Adams",
+        "sosmed": "Benjamin",
+        "address": "Suite 945",
+        "jenis": "bird",
+        "status": "ah"
+    },
+    {
+        "id": "37f1e83cd8acffd390e68f58",
+        "name": "Dr. Dixie Hammes",
+        "sosmed": "Raven",
+        "address": "Suite 819",
+        "jenis": "snake",
+        "status": "drat"
+    },
+    {
+        "id": "2d88eacfdef30e0fce6cda8b",
+        "name": "Tomas Kuhn",
+        "sosmed": "Addison",
+        "address": "Suite 208",
+        "jenis": "bird",
+        "status": "pfft"
+    },
+    {
+        "id": "e7a34ba48d173fb0f85cf204",
+        "name": "Ms. Sue Williamson",
+        "sosmed": "Peyton",
+        "address": "Suite 688",
+        "jenis": "cetacean",
+        "status": "geez"
+    },
+    {
+        "id": "84b115f8e0f3cc3b8df72c3c",
+        "name": "Camille Dibbert",
+        "sosmed": "Vladimir",
+        "address": "Apt. 447",
+        "jenis": "rabbit",
+        "status": "geez"
+    },
+    {
+        "id": "faa2cc4ac6a7eec915c769dc",
+        "name": "Keith Sawayn",
+        "sosmed": "Jermain",
+        "address": "Apt. 895",
+        "jenis": "bird",
+        "status": "geez"
+    },
+    {
+        "id": "76fd12f08d1098a7caa59a53",
+        "name": "Cornelius O'Hara MD",
+        "sosmed": "Carlos",
+        "address": "Suite 446",
+        "jenis": "fish",
+        "status": "yuck"
+    },
+    {
+        "id": "f6c62da3f85abbb7abcd7987",
+        "name": "Emilio Christiansen",
+        "sosmed": "Barry",
+        "address": "Suite 515",
+        "jenis": "crocodilia",
+        "status": "hmph"
+    },
+    {
+        "id": "fd877043d4817f09854a1b9d",
+        "name": "Laura Ondricka",
+        "sosmed": "Carmela",
+        "address": "Suite 501",
+        "jenis": "crocodilia",
+        "status": "drat"
+    },
+    {
+        "id": "bdc302cb729ec85cef8cda97",
+        "name": "Renee Rice",
+        "sosmed": "Dulce",
+        "address": "Suite 627",
+        "jenis": "cat",
+        "status": "brr"
+    },
+    {
+        "id": "7c0e9e5d5abeb46437b4ee05",
+        "name": "Pablo Nader Sr.",
+        "sosmed": "Saige",
+        "address": "Suite 331",
+        "jenis": "fish",
+        "status": "yuck"
+    }
+]

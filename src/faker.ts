@@ -7,7 +7,7 @@ export interface UserFakeType{
     jenis:string
     status:string
 }
-export function getUserFake (amount:number=100):UserFakeType[]{
+export function getUserFake (amount:number=30):UserFakeType[]{
     return Array.from({length:amount},()=>{
         return {
             id: faker.database.mongodbObjectId(),

@@ -1,6 +1,6 @@
 import { UserType } from "@/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import usersjson from './users.json'
 
 export type AdminState = {
     user:UserType[],
@@ -10,7 +10,7 @@ export type AdminState = {
 }
 
 const initialState:AdminState={
-    user:[],
+    user:usersjson,
     token:'',
     isLoading:false,
     error:''

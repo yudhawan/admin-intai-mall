@@ -1,10 +1,9 @@
 'use client'
-import Button from '@/components/Button/Button'
 import style from './UsersContainer.module.scss'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import InputComponent from '@/components/InputComponent/InputComponent'
 import PaginationContainer from '../PaginationContainer/PaginationContainer'
-import { getUserFake, UserFakeType } from '@/faker'
+import { getUserFake} from '@/faker'
 import { useRedux } from '@/redux/useRedux'
 import { setUsers } from '@/redux/reducers/usersReducers'
 function UsersContainer() {
@@ -12,20 +11,22 @@ function UsersContainer() {
   
   const [getChecked,setChecked]=useState<string[]>([])
   const [search,setSearch] = useState<string>('')
-
-  function handleCheck(e:ChangeEvent<HTMLInputElement>) {
-    if(e.target instanceof HTMLInputElement) {
-      if(e.target.checked){
-        e.target.checked=false
-        const newData = getChecked?.filter(val=>val!==e.target?.id)
-        setChecked(newData)
-
-      }
-      else {
-        e.target.checked=true
-        setChecked(prev=>([...prev, e.target?.id]))
-  
-      }
+  function handleCheckAll(e:MouseEvent<HTMLInputElement>) {
+    const id = e.currentTarget.checked
+    if(id){
+      const all = selector.user?.map(val=> val.id)
+      setChecked(all)
+      return
+    }else setChecked([])
+  }
+  function handleCheck(e:MouseEvent<HTMLInputElement>) {
+    const id = e.currentTarget.id
+    if(getChecked?.includes(id)){
+      const newData = getChecked?.filter(val=>val!==id)
+      setChecked(newData)
+    }
+    else {
+      setChecked(prev=>([...prev, id]))
     }
   }
   useEffect(()=>{
@@ -39,7 +40,7 @@ function UsersContainer() {
       <table className={style.table}>
         <thead>
           <tr>
-            <th><input type='checkbox' onChange={e=>e.target.checked} /></th>
+            <th><input type='checkbox' onClick={handleCheckAll} id='all' /></th>
             <th>name</th>
             <th>facebook</th>
             <th>address</th>
@@ -49,17 +50,17 @@ function UsersContainer() {
         </thead>
         <tbody>
           {
-            !!getUserFake()?.length&& getUserFake().map(val=>{
+            !!selector.user?.length&& selector.user.map(val=>{
               return(
                 <tr key={val.id}>
                   <td align='center'>
-                    <input type='checkbox' onChange={handleCheck} id={val?.id} onClick={e=>{}} />
+                    <input type='checkbox' id={val?.id} onClick={handleCheck} checked={getChecked.includes(val?.id)} />
                   </td>
-                  <td>{val.name}</td>
-                  <td>@{val.sosmed}</td>
-                  <td>{val.address}</td>
-                  <td>{val.jenis}</td>
-                  <td>{val.status}</td>
+                  <td className='text-sm font-semibold'>{val.name}</td>
+                  <td className='text-sm'>@{val.sosmed}</td>
+                  <td className='text-sm'>{val.address}</td>
+                  <td className='text-sm'>{val.jenis}</td>
+                  <td className='text-sm'>{val.status}</td>
                 </tr>
               )
             })
